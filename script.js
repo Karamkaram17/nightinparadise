@@ -63,6 +63,7 @@ const monthName = [
   "November",
   "December",
 ];
+
 /// custom msg
 const customResponseContainer = document.getElementById("custom-responce");
 const customResponceMSG = document.getElementById("custom-responce-msg");
@@ -710,13 +711,13 @@ function showElements() {
       "block";
     navUL.innerHTML = `<li class="nav-item">
                         <a
-                          class="nav-link active"
+                          class="nav-link "
                           aria-current="page"
                           onclick="changeDisplay('reservations-section')"
-                          >Home <span class="visually-hidden">(current)</span></a>
+                          >Home </a>
                         </li>
                         <li class="nav-item" id="">
-                          <a class="nav-link" onclick="changeDisplay('all-users-section')">Users</a>
+                          <a class="nav-link" onclick="changeDisplay('all-users-section'),showAllUsers()">Users</a>
                         </li>`;
   } else if (USER_ROLES.includes(2001)) {
     removeDisabled();
@@ -727,19 +728,19 @@ function showElements() {
       "block";
     navUL.innerHTML = `<li class="nav-item">
                         <a
-                          class="nav-link active"
+                          class="nav-link "
                           aria-current="page"
                           onclick="changeDisplay('reservations-section')"
-                          >Home <span class="visually-hidden">(current)</span></a
+                          >Home </a
                         >
                       </li>`;
   } else {
     navUL.innerHTML = `<li class="nav-item">
                         <a
-                          class="nav-link active"
+                          class="nav-link "
                           aria-current="page"
                           onclick="changeDisplay('reservations-section')"
-                          >Home <span class="visually-hidden">(current)</span></a
+                          >Home </a
                         >
                       </li>`;
   }
