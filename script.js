@@ -440,7 +440,7 @@ function showReservation(number, date) {
       editReservationCont.value = data.reservation.person.contact;
       editReservationDate.value = data.reservation.bookedDate;
       editReservationPrice.value = data.reservation.price;
-      editReservationNotes.innerHTML = data.reservation.notes;
+      editReservationNotes.value = data.reservation.notes;
     })
     .catch((error) => console.error(error));
 }
