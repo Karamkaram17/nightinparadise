@@ -661,7 +661,7 @@ function clearReservationModal() {
   editReservationCont.value = "";
   editReservationDate.value = "";
   editReservationName.value = "";
-  editReservationNotes.textContent = "";
+  editReservationNotes.value = "";
   editReservationNumb.innerHTML = "";
   editReservationPrice.value = "";
   editReservationUser.innerHTML = "";
@@ -681,7 +681,7 @@ function clearAddReservationModal() {
   addReservationCont.value = "";
   addReservationDate.value = "";
   addReservationName.value = "";
-  addReservationNotes.textContent = "";
+  addReservationNotes.value = "";
   addReservationNumb.innerHTML = "";
   addReservationPrice.value = "";
 }
