@@ -451,7 +451,7 @@ editReservationForm.addEventListener("submit", (e) => {
   const date = editReservationDate.value;
   const response = {
     price: editReservationPrice.value,
-    notes: editReservationNotes.textContent,
+    notes: editReservationNotes.value,
     person: {
       name: editReservationName.value,
       contact: editReservationCont.value,
@@ -510,7 +510,7 @@ addReservationForm.addEventListener("submit", (e) => {
     },
     modificationUser: USER_NAME,
     price: addReservationPrice.value,
-    notes: addReservationNotes.textContent,
+    notes: addReservationNotes.value,
   };
   fetch(`https://moonlight-znjk.onrender.com/reservations`, {
     method: "POST",
