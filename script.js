@@ -447,6 +447,8 @@ function showReservation(number, date) {
 
 editReservationForm.addEventListener("submit", (e) => {
   e.preventDefault();
+  const number = editReservationNumb.innerText;
+  const date = editReservationDate.value;
   const response = {
     price: editReservationPrice.value,
     notes: editReservationNotes.textContent,
