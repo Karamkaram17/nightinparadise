@@ -3,6 +3,7 @@ const loginSection = document.getElementById("login-section");
 const loginForm = document.getElementById("login-form");
 const loginUsername = document.getElementById("username-login-input");
 const loginPassword = document.getElementById("password-login-input");
+const waitingResponse = document.getElementById("waiting-response");
 
 /// users section
 const allUsersSection = document.getElementById("all-users-section");
@@ -695,6 +696,7 @@ function changeDisplay(target) {
   loginSection.style.display = "none";
   allUsersSection.style.display = "none";
   reservationSection.style.display = "none";
+  waitingResponse.style.display = "none";
   document.getElementById(target).style.display = "block";
 }
 function showElements() {
@@ -749,3 +751,21 @@ function removeDisabled() {
   editReservationPrice.removeAttribute("disabled", "");
   editReservationNotes.removeAttribute("disabled", "");
 }
+function ScaleUp() {
+  fetch(`https://moonlight-znjk.onrender.com/data`, {
+    method: "GET",
+    headers: {
+      Authorization: "Bearer " + accessToken,
+    },
+  })
+    .then((response) => response.json())
+    .then(() => {
+      changeDisplay("login-section");
+    })
+    .catch((error) => {
+      const ServerResponse = document.getElementById("server-up");
+      ServerResponse.innerHTML = `<h1 style="color:red">An unexpected error occurred</h1><h2 style="color:red">try again later</h2>`;
+      console.error(error);
+    });
+}
+ScaleUp();
