@@ -1,0 +1,33 @@
+body {
+  min-width: 325px;
+}
+header a {
+  cursor: pointer;
+}
+#custom-responce {
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  z-index: 999;
+  display: none;
+}
+#allusers-alert {
+  display: none;
+  color: red;
+}
+#all-users-section {
+  max-width: 600px;
+  margin: auto;
+  display: none;
+}
+#login-section {
+  max-width: 300px;
+  margin: auto;
+}
+
+#reservations-section {
+  max-width: 600px;
+  margin: auto;
+  display: none;
+}
