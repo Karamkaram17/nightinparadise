@@ -74,7 +74,7 @@ var RESERVATIONS = [];
 /// =============== login form ================
 loginForm.addEventListener("submit", (e) => {
   e.preventDefault();
-  const username = loginUsername.value;
+  const username = loginUsername.value.toString();
   const password = loginPassword.value;
   fetch("https://moonlight-znjk.onrender.com/auth", {
     method: "POST",
@@ -702,7 +702,6 @@ function changeDisplay(target) {
 function showElements() {
   const navUL = document.getElementById("header-ul");
   if (USER_ROLES.includes(5150)) {
-    showAllUsers();
     removeDisabled();
     document.getElementById("edit-reservation-button").style.display = "block";
     document.getElementById("delete-reservation-button").style.display =
