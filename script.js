@@ -41,6 +41,22 @@ const addReservationPrice = document.getElementById("add-reservation-price");
 const addReservationNotes = document.getElementById("add-reservation-notes");
 const addReservationAlert = document.getElementById("add-reservation-alert");
 
+/// expences section
+const expencesSection = document.getElementById("all-expences-section");
+const allExpencesAlert = document.getElementById("allexpences-alert");
+const displayAllExpencesDOM = document.getElementById("all-expences-table");
+const addExpenceForm = document.getElementById("add-expence-form");
+const addExpenceTitle = document.getElementById("add-expence-title");
+const addExpenceDate = document.getElementById("add-expence-date");
+const addExpencePrice = document.getElementById("add-expence-price");
+const addExpenceNotes = document.getElementById("add-expence-notes");
+const editExpenceForm = document.getElementById("edit-expence-form");
+const editExpenceAlert = document.getElementById("edit-expence-alert");
+const editExpenceTitle = document.getElementById("edit-expence-title");
+const editExpenceDate = document.getElementById("edit-expence-date");
+const editExpencePrice = document.getElementById("edit-expence-price");
+const editExpenceNotes = document.getElementById("edit-expence-notes");
+
 /// calendar
 const prev = document.getElementById("b1-prev");
 const bDate = document.getElementById("b1-date");
@@ -71,13 +87,15 @@ var accessToken;
 var USER_ROLES;
 var USER_NAME;
 var RESERVATIONS = [];
+var EXPENCE_ID;
+const MY_URL = "http://localhost:5000";
 
 /// =============== login form ================
 loginForm.addEventListener("submit", (e) => {
   e.preventDefault();
   const username = loginUsername.value.toString();
   const password = loginPassword.value;
-  fetch("https://moonlight-znjk.onrender.com/auth", {
+  fetch(`${MY_URL}/auth`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -124,7 +142,7 @@ loginForm.addEventListener("submit", (e) => {
 function showAllUsers() {
   displayAllUsersDOM.innerHTML = "";
   allUsersAlert.style.display = "block";
-  fetch(`https://moonlight-znjk.onrender.com/users`, {
+  fetch(`${MY_URL}/users`, {
     method: "GET",
     headers: {
       Authorization: "Bearer " + accessToken,
@@ -181,7 +199,7 @@ function showAllUsers() {
 function deleteUser(username) {
   const response = window.confirm("Confirm Delete");
   if (response === true) {
-    fetch(`https://moonlight-znjk.onrender.com/users/${username}`, {
+    fetch(`${MY_URL}/users/${username}`, {
       method: "DELETE",
       headers: {
         Authorization: "Bearer " + accessToken,
@@ -206,7 +224,7 @@ function deleteUser(username) {
 
 function showUser(username) {
   editUserUsername.innerHTML = "loading...";
-  fetch(`https://moonlight-znjk.onrender.com/users/${username}`, {
+  fetch(`${MY_URL}/users/${username}`, {
     method: "GET",
     headers: {
       Authorization: "Bearer " + accessToken,
@@ -244,18 +262,15 @@ editUserForm.addEventListener("submit", (e) => {
   password == "" || !password ? delete response.password : null;
   editUserAdmin.checked ? (response.roles.admin = 5150) : null;
   editUserEditor.checked ? (response.roles.editor = 2001) : null;
-  fetch(
-    `https://moonlight-znjk.onrender.com/users/${editUserUsername.textContent}`,
-    {
-      method: "PATCH",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: "Bearer " + accessToken,
-      },
-      body: JSON.stringify(response),
-      credentials: "include",
-    }
-  )
+  fetch(`${MY_URL}/users/${editUserUsername.textContent}`, {
+    method: "PATCH",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: "Bearer " + accessToken,
+    },
+    body: JSON.stringify(response),
+    credentials: "include",
+  })
     .then((response) => {
       if (response.ok) {
         return response.json();
@@ -293,7 +308,7 @@ addUserForm.addEventListener("submit", (e) => {
   const roles = { user: 1984 };
   addUsernameAdmin.checked ? (roles.admin = 5150) : null;
   addUsernameEditor.checked ? (roles.editor = 2001) : null;
-  fetch("https://moonlight-znjk.onrender.com/users", {
+  fetch(`${MY_URL}/users`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -324,7 +339,6 @@ addUserForm.addEventListener("submit", (e) => {
       addUserPassword.value = "";
       addUsernameAdmin.checked = false;
       addUsernameEditor.checked = false;
-      showAllUsers();
     })
     .catch((error) => {
       console.error(error);
@@ -342,7 +356,7 @@ editUserPassCheck.addEventListener("change", () => {
 
 /// ================= reservation functions and forms ====================
 function showAllReservations() {
-  fetch(`https://moonlight-znjk.onrender.com/reservations`, {
+  fetch(`${MY_URL}/reservations`, {
     method: "GET",
     headers: {
       Authorization: "Bearer " + accessToken,
@@ -380,15 +394,12 @@ function deleteReservation() {
   const date = editReservationDate.value;
   const response = window.confirm("Confirm Delete");
   if (response === true) {
-    fetch(
-      `https://moonlight-znjk.onrender.com/reservations/${number}/date/${date}`,
-      {
-        method: "DELETE",
-        headers: {
-          Authorization: "Bearer " + accessToken,
-        },
-      }
-    )
+    fetch(`${MY_URL}/reservations/${number}/date/${date}`, {
+      method: "DELETE",
+      headers: {
+        Authorization: "Bearer " + accessToken,
+      },
+    })
       .then((response) => {
         if (response.ok) {
           return response.json();
@@ -409,15 +420,12 @@ function deleteReservation() {
 
 function showReservation(number, date) {
   editReservationAlert.innerHTML = "loading...";
-  fetch(
-    `https://moonlight-znjk.onrender.com/reservations/${number}/date/${date}`,
-    {
-      method: "GET",
-      headers: {
-        Authorization: "Bearer " + accessToken,
-      },
-    }
-  )
+  fetch(`${MY_URL}/reservations/${number}/date/${date}`, {
+    method: "GET",
+    headers: {
+      Authorization: "Bearer " + accessToken,
+    },
+  })
     .then((response) => {
       if (response.ok) {
         return response.json();
@@ -452,23 +460,21 @@ editReservationForm.addEventListener("submit", (e) => {
   const response = {
     price: editReservationPrice.value,
     notes: editReservationNotes.value,
+    modificationUser: USER_NAME,
     person: {
       name: editReservationName.value,
       contact: editReservationCont.value,
     },
   };
-  fetch(
-    `https://moonlight-znjk.onrender.com/reservations/${number}/date/${date}`,
-    {
-      method: "PATCH",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: "Bearer " + accessToken,
-      },
-      body: JSON.stringify(response),
-      credentials: "include",
-    }
-  )
+  fetch(`${MY_URL}/reservations/${number}/date/${date}`, {
+    method: "PATCH",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: "Bearer " + accessToken,
+    },
+    body: JSON.stringify(response),
+    credentials: "include",
+  })
     .then((response) => {
       if (response.ok) {
         return response.json();
@@ -512,7 +518,7 @@ addReservationForm.addEventListener("submit", (e) => {
     price: addReservationPrice.value,
     notes: addReservationNotes.value,
   };
-  fetch(`https://moonlight-znjk.onrender.com/reservations`, {
+  fetch(`${MY_URL}/reservations`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -545,6 +551,204 @@ addReservationForm.addEventListener("submit", (e) => {
     .then(() => {
       closeAddReservationModal();
       showAllReservations();
+    })
+    .catch((error) => {
+      console.error(error);
+    });
+});
+
+/// ================ expences functions and forms =====================
+function showAllExpences() {
+  displayAllExpencesDOM.innerHTML = "";
+  allExpencesAlert.style.display = "block";
+  fetch(`${MY_URL}/expences`, {
+    method: "GET",
+    headers: {
+      Authorization: "Bearer " + accessToken,
+    },
+  })
+    .then((response) => {
+      if (response.ok) {
+        return response.json();
+      } else if (response.status === 401) {
+        displayCustomResponce("Unauthorized");
+        throw new Error(response.statusText);
+      } else if (response.status === 403) {
+        displayCustomResponce("Forbidden");
+        throw new Error(response.statusText);
+      } else {
+        displayCustomResponce("An unexpected error occurred");
+        throw new Error(response.statusText);
+      }
+    })
+    .then((data) => {
+      allExpencesAlert.style.display = "none";
+      const expences = data.expences;
+      expences.forEach((expence) => {
+        const addContent = ` <tr>
+                              <td class="text-start">${expence.title}</td>
+                              <td>${expence.price}</td>
+                              <td class="text-center">
+                                <button class="btn btn-sm btn-outline-info" data-bs-toggle="modal" data-bs-target="#edit-expence-modal" onclick="showExpence('${expence._id}'),setExpenceId('${expence._id}')">
+                                  <i class="fas fa-edit"></i>
+                                </button>
+                              </td>
+                              <td class="text-center">
+                                <button class="btn btn-sm btn-outline-danger" onclick="deleteExpence('${expence._id}')">
+                                  <i class="fas fa-trash"></i>
+                                </button>
+                              </td>
+                            </tr>`;
+        displayAllExpencesDOM.innerHTML += addContent;
+      });
+    })
+    .catch((error) => {
+      console.error(error);
+    });
+}
+
+function deleteExpence(id) {
+  const response = window.confirm("Confirm Delete");
+  if (response === true) {
+    fetch(`${MY_URL}/expences/${id}`, {
+      method: "DELETE",
+      headers: {
+        Authorization: "Bearer " + accessToken,
+      },
+    })
+      .then((response) => {
+        if (response.ok) {
+          return response.json();
+        } else if (response.status === 401) {
+          displayCustomResponce("Unauthorized");
+          closeExpenceModal();
+          throw new Error(response.statusText);
+        } else if (response.status === 403) {
+          displayCustomResponce("Forbidden");
+          closeExpenceModal();
+          throw new Error(response.statusText);
+        } else {
+          throw new Error(response.statusText);
+        }
+      })
+      .then(() => {
+        showAllExpences();
+        closeExpenceModal();
+      })
+      .catch((error) => {
+        showAllExpences();
+        console.error(error);
+      });
+  }
+}
+
+function showExpence(id) {
+  editExpenceAlert.innerHTML = "loading...";
+  fetch(`${MY_URL}/expences/${id}`, {
+    method: "GET",
+    headers: {
+      Authorization: "Bearer " + accessToken,
+    },
+  })
+    .then((response) => {
+      if (response.ok) {
+        return response.json();
+      } else if (response.status === 401) {
+        displayCustomResponce("Unauthorized");
+        throw new Error(response.statusText);
+      } else if (response.status === 403) {
+        displayCustomResponce("Forbidden");
+        throw new Error(response.statusText);
+      } else {
+        displayCustomResponce("An unexpected error occurred");
+        throw new Error(response.statusText);
+      }
+    })
+    .then((data) => {
+      editExpenceAlert.innerHTML = "";
+      editExpenceTitle.value = data.expence.title;
+      editExpenceDate.value = data.expence.date;
+      editExpencePrice.value = data.expence.price;
+      editExpenceNotes.value = data.expence.notes;
+    })
+    .catch((error) => console.error(error));
+}
+
+editExpenceForm.addEventListener("submit", (e) => {
+  e.preventDefault();
+  const title = editExpenceTitle.value;
+  const date = editExpenceDate.value;
+  const price = editExpencePrice.value;
+  const notes = editExpenceNotes.value;
+  fetch(`${MY_URL}/expences/${EXPENCE_ID}`, {
+    method: "PATCH",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: "Bearer " + accessToken,
+    },
+    body: JSON.stringify({ title, date, price, notes }),
+    credentials: "include",
+  })
+    .then((response) => {
+      if (response.ok) {
+        return response.json();
+      } else if (response.status === 401) {
+        displayCustomResponce("Unauthorized");
+        closeExpenceModal();
+        throw new Error(response.statusText);
+      } else if (response.status === 403) {
+        displayCustomResponce("Forbidden");
+        closeExpenceModal();
+        throw new Error(response.statusText);
+      } else {
+        displayCustomResponce("An unexpected error occurred");
+        closeExpenceModal();
+        throw new Error(response.statusText);
+      }
+    })
+    .then(() => {
+      closeExpenceModal();
+      showAllExpences();
+    })
+    .catch((error) => {
+      console.error(error);
+    });
+});
+
+addExpenceForm.addEventListener("submit", (e) => {
+  e.preventDefault();
+  const title = addExpenceTitle.value;
+  const date = addExpenceDate.value;
+  const price = addExpencePrice.value;
+  const notes = addExpenceNotes.value;
+  fetch(`${MY_URL}/expences`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: "Bearer " + accessToken,
+    },
+    body: JSON.stringify({ title, date, price, notes }),
+    credentials: "include",
+  })
+    .then((response) => {
+      if (response.ok) {
+        return response.json();
+      } else if (response.status === 401) {
+        displayCustomResponce("Unauthorized");
+        throw new Error(response.statusText);
+      } else if (response.status === 403) {
+        displayCustomResponce("Forbidden");
+        throw new Error(response.statusText);
+      } else {
+        displayCustomResponce("An unexpected error occurred");
+        throw new Error(response.statusText);
+      }
+    })
+    .then(() => {
+      addExpenceTitle.value = "";
+      addExpenceDate.value = "";
+      addExpencePrice.value = "";
+      addExpenceNotes.value = "";
     })
     .catch((error) => {
       console.error(error);
@@ -646,6 +850,23 @@ function clearUserModal() {
   editUserEditor.checked = false;
   editUserPassCheck.checked = false;
 }
+function closeExpenceModal() {
+  let button = document.getElementById("expence-modal-btn");
+  let event = new MouseEvent("click", {
+    view: window,
+    bubbles: true,
+    cancelable: true,
+  });
+  button.dispatchEvent(event);
+  clearExpenceModal();
+}
+function clearExpenceModal() {
+  editExpenceAlert.innerHTML = "";
+  editExpenceDate.value = "";
+  editExpenceTitle.value = "";
+  editExpencePrice.value = "";
+  editExpenceNotes.value = "";
+}
 function closeReservationModal() {
   let button2 = document.getElementById("reservation-modal-btn");
   let event = new MouseEvent("click", {
@@ -699,13 +920,16 @@ function changeDisplay(target) {
   loginSection.style.display = "none";
   allUsersSection.style.display = "none";
   reservationSection.style.display = "none";
+  expencesSection.style.display = "none";
   waitingResponse.style.display = "none";
   document.getElementById(target).style.display = "block";
 }
 function showElements() {
   const navUL = document.getElementById("header-ul");
+  const addExpence = document.getElementById("add-expence-tab");
   if (USER_ROLES.includes(5150)) {
     removeDisabled();
+    addExpence.style.display = "block";
     document.getElementById("edit-reservation-button").style.display = "block";
     document.getElementById("delete-reservation-button").style.display =
       "block";
@@ -720,9 +944,13 @@ function showElements() {
                         </li>
                         <li class="nav-item" id="">
                           <a class="nav-link" onclick="changeDisplay('all-users-section'),showAllUsers()">Users</a>
+                        </li>
+                        <li class="nav-item" id="">
+                          <a class="nav-link" onclick="changeDisplay('all-expences-section'),showAllExpences()">Expences</a>
                         </li>`;
   } else if (USER_ROLES.includes(2001)) {
     removeDisabled();
+    addExpence.style.display = "block";
     document.getElementById("edit-reservation-button").style.display = "block";
     document.getElementById("delete-reservation-button").style.display =
       "block";
@@ -735,8 +963,13 @@ function showElements() {
                           onclick="changeDisplay('reservations-section')"
                           >Home </a
                         >
+                      </li>
+                      <li class="nav-item" id="">
+                        <a class="nav-link" onclick="changeDisplay('all-expences-section'),showAllExpences()">Expences</a>
                       </li>`;
   } else {
+    document.getElementById("add-expence-tab").style.display = "none";
+    addExpence.style.display = "none";
     navUL.innerHTML = `<li class="nav-item">
                         <a
                           class="nav-link "
@@ -744,6 +977,9 @@ function showElements() {
                           onclick="changeDisplay('reservations-section')"
                           >Home </a
                         >
+                      </li>
+                      <li class="nav-item" id="">
+                        <a class="nav-link" onclick="changeDisplay('all-expences-section'),showAllExpences()">Expences</a>
                       </li>`;
   }
 }
@@ -754,7 +990,7 @@ function removeDisabled() {
   editReservationNotes.removeAttribute("disabled", "");
 }
 function ScaleUp() {
-  fetch(`https://moonlight-znjk.onrender.com/data`, {
+  fetch(`${MY_URL}/data`, {
     method: "GET",
     headers: {
       Authorization: "Bearer " + accessToken,
@@ -769,5 +1005,8 @@ function ScaleUp() {
       ServerResponse.innerHTML = `<h1 style="color:red">An unexpected error occurred</h1><h2 style="color:red">try again later</h2>`;
       console.error(error);
     });
+}
+function setExpenceId(id) {
+  EXPENCE_ID = id;
 }
 ScaleUp();
