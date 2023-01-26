@@ -58,6 +58,7 @@ const expMonthlyTable = document.getElementById("monthly-expence-table");
 const expMonthlybtns = document.getElementById("exp-monthly-thead");
 let expMM = new Date().getMonth();
 let expMY = new Date().getFullYear();
+expMonthlybtns.value = expMM;
 // add expences section
 const addExpenceForm = document.getElementById("add-expence-form");
 const addExpenceTitle = document.getElementById("add-expence-title");
@@ -78,6 +79,7 @@ const revMonthlyTable = document.getElementById("monthly-revenue-table");
 const revMonthlybtns = document.getElementById("rev-monthly-thead");
 let revMM = new Date().getMonth();
 let revMY = new Date().getFullYear();
+revMonthlybtns.value = revMM;
 // add revenues section
 const addRevenueForm = document.getElementById("add-revenue-form");
 const addRevenueTitle = document.getElementById("add-revenue-title");
