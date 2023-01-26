@@ -1280,7 +1280,7 @@ revDailyNext.addEventListener("click", () => {
 });
 
 /// functions and event listener for revenues monthly calendar
-function setrevMM() {
+function setRevMM() {
   revMM = parseInt(revMonthlybtns.value);
   resfreshMonthlyRevenues();
 }
