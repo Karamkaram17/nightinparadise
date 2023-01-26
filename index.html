@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Night In Paradise</title>
     <link rel="stylesheet" href="style.css" />
+    <link rel="icon" type="image/png" href="./img/JM - P.png" />
     <!-- Bootstrap CSS v5.2.1 -->
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css"
@@ -300,7 +301,13 @@
           >
         </li>
         <li class="nav-item" role="presentation">
-          <a href="#profit-tab" class="nav-link" data-bs-toggle="tab">Profit</a>
+          <a
+            href="#profit-tab"
+            class="nav-link"
+            data-bs-toggle="tab"
+            onclick="showAllExpences(),showAllRevenues()"
+            >Profit</a
+          >
         </li>
       </ul>
       <!-- Tab panes -->
@@ -676,7 +683,7 @@
               <table class="table table-bordered text-bg-dark">
                 <thead>
                   <tr>
-                    <th class="col-8">Monthly</th>
+                    <th class="col-8">Yearly</th>
                     <th class="col-4">$</th>
                   </tr>
                 </thead>

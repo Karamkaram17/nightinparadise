@@ -96,6 +96,7 @@ const profitMonthlyExp = document.getElementById("profit-exp-m");
 const profitMonthlyResult = document.getElementById("profit-result-m");
 profY = new Date().getFullYear();
 profM = new Date().getMonth();
+profitSelect.value = profM;
 
 /// edit expence modal
 const editExpenceForm = document.getElementById("edit-expence-form");
