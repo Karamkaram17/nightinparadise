@@ -41,21 +41,75 @@ const addReservationPrice = document.getElementById("add-reservation-price");
 const addReservationNotes = document.getElementById("add-reservation-notes");
 const addReservationAlert = document.getElementById("add-reservation-alert");
 
-/// expences section
-const expencesSection = document.getElementById("all-expences-section");
-const allExpencesAlert = document.getElementById("allexpences-alert");
-const displayAllExpencesDOM = document.getElementById("all-expences-table");
+/// finance section
+const finnaceSection = document.getElementById("finance-section");
+//daily expences section
+const expDailyNext = document.getElementById("expence-next");
+const expDailyPrev = document.getElementById("expence-prev");
+const expDailyDate = document.getElementById("expence-date");
+const expDailyTable = document.getElementById("daily-expence-table");
+let expM = new Date().getMonth();
+let expY = new Date().getFullYear();
+//monthly expences section
+const expMonthlyNext = document.getElementById("expence-next-monthly");
+const expMonthlyPrev = document.getElementById("expence-prev-monthly");
+const expMonthlyDate = document.getElementById("expence-date-monthly");
+const expMonthlyTable = document.getElementById("monthly-expence-table");
+const expMonthlybtns = document.getElementById("exp-monthly-thead");
+let expMM = new Date().getMonth();
+let expMY = new Date().getFullYear();
+// add expences section
 const addExpenceForm = document.getElementById("add-expence-form");
 const addExpenceTitle = document.getElementById("add-expence-title");
 const addExpenceDate = document.getElementById("add-expence-date");
 const addExpencePrice = document.getElementById("add-expence-price");
-const addExpenceNotes = document.getElementById("add-expence-notes");
+//daily revenues section
+const revDailyNext = document.getElementById("revenue-next");
+const revDailyPrev = document.getElementById("revenue-prev");
+const revDailyDate = document.getElementById("revenue-date");
+const revDailyTable = document.getElementById("daily-revenue-table");
+let revM = new Date().getMonth();
+let revY = new Date().getFullYear();
+//monthly revenues section
+const revMonthlyNext = document.getElementById("revenue-next-monthly");
+const revMonthlyPrev = document.getElementById("revenue-prev-monthly");
+const revMonthlyDate = document.getElementById("revenue-date-monthly");
+const revMonthlyTable = document.getElementById("monthly-revenue-table");
+const revMonthlybtns = document.getElementById("rev-monthly-thead");
+let revMM = new Date().getMonth();
+let revMY = new Date().getFullYear();
+// add revenues section
+const addRevenueForm = document.getElementById("add-revenue-form");
+const addRevenueTitle = document.getElementById("add-revenue-title");
+const addRevenueDate = document.getElementById("add-revenue-date");
+const addRevenuePrice = document.getElementById("add-revenue-price");
+// profit section
+const profitNext = document.getElementById("profit-next");
+const profitPrev = document.getElementById("profit-prev");
+const profitDate = document.getElementById("profit-date");
+const profityearlyRev = document.getElementById("profit-rev-y");
+const profityearlyExp = document.getElementById("profit-exp-y");
+const profityearlyResult = document.getElementById("profit-result-y");
+const profitSelect = document.getElementById("profit-select");
+const profitMonthlyRev = document.getElementById("profit-rev-m");
+const profitMonthlyExp = document.getElementById("profit-exp-m");
+const profitMonthlyResult = document.getElementById("profit-result-m");
+profY = new Date().getFullYear();
+profM = new Date().getMonth();
+
+/// edit expence modal
 const editExpenceForm = document.getElementById("edit-expence-form");
 const editExpenceAlert = document.getElementById("edit-expence-alert");
 const editExpenceTitle = document.getElementById("edit-expence-title");
 const editExpenceDate = document.getElementById("edit-expence-date");
 const editExpencePrice = document.getElementById("edit-expence-price");
-const editExpenceNotes = document.getElementById("edit-expence-notes");
+
+/// edit revenue modal
+const editRevenueForm = document.getElementById("edit-revenue-form");
+const editRevenueAlert = document.getElementById("edit-revenue-alert");
+const editRevenueTitle = document.getElementById("edit-revenue-title");
+const editRevenueDate = document.getElementById("edit-revenue-date");
+const editRevenuePrice = document.getElementById("edit-revenue-price");
 
 /// calendar
 const prev = document.getElementById("b1-prev");
@@ -65,6 +119,7 @@ const b1TableBody = document.getElementById("b1-table-body");
 const b2TableBody = document.getElementById("b2-table-body");
 let month = new Date().getMonth();
 let year = new Date().getFullYear();
+
 const monthName = [
   "January",
   "February",
@@ -87,13 +142,16 @@ var accessToken;
 var USER_ROLES;
 var USER_NAME;
 var RESERVATIONS = [];
+var EXPENCES = [];
 var EXPENCE_ID;
-const MY_URL = "https://moonlight-znjk.onrender.com";
+var REVENUES = [];
+var REVENUE_ID;
+const MY_URL = "http://localhost:5000";
 
 /// =============== login form ================
 loginForm.addEventListener("submit", (e) => {
   e.preventDefault();
-  const username = loginUsername.value.toString();
+  const username = loginUsername.value.toLowerCase();
   const password = loginPassword.value;
   fetch(`${MY_URL}/auth`, {
     method: "POST",
@@ -156,6 +214,7 @@ function showAllUsers() {
         throw new Error(response.statusText);
       } else if (response.status === 403) {
         displayCustomResponce("Forbidden");
+        changeDisplay("login-section");
         throw new Error(response.statusText);
       } else {
         displayCustomResponce("An unexpected error occurred");
@@ -208,6 +267,13 @@ function deleteUser(username) {
       .then((response) => {
         if (response.ok) {
           return response.json();
+        } else if (response.status === 401) {
+          displayCustomResponce("Unauthorized");
+          throw new Error(response.statusText);
+        } else if (response.status === 403) {
+          displayCustomResponce("Forbidden");
+          changeDisplay("login-section");
+          throw new Error(response.statusText);
         } else {
           throw new Error(response.statusText);
         }
@@ -238,6 +304,7 @@ function showUser(username) {
         throw new Error(response.statusText);
       } else if (response.status === 403) {
         displayCustomResponce("Forbidden");
+        changeDisplay("login-section");
         throw new Error(response.statusText);
       } else {
         displayCustomResponce("An unexpected error occurred");
@@ -280,6 +347,7 @@ editUserForm.addEventListener("submit", (e) => {
         throw new Error(response.statusText);
       } else if (response.status === 403) {
         displayCustomResponce("Forbidden");
+        changeDisplay("login-section");
         closeUserModal();
         throw new Error(response.statusText);
       } else if (response.status === 409) {
@@ -325,6 +393,7 @@ addUserForm.addEventListener("submit", (e) => {
         throw new Error(response.statusText);
       } else if (response.status === 403) {
         displayCustomResponce("Forbidden");
+        changeDisplay("login-section");
         throw new Error(response.statusText);
       } else if (response.status === 409) {
         displayCustomResponce("username already exists");
@@ -370,6 +439,7 @@ function showAllReservations() {
         throw new Error(response.statusText);
       } else if (response.status === 403) {
         displayCustomResponce("Forbidden");
+        changeDisplay("login-section");
         throw new Error(response.statusText);
       } else {
         displayCustomResponce("An unexpected error occurred");
@@ -378,10 +448,7 @@ function showAllReservations() {
     })
     .then((data) => {
       RESERVATIONS = [];
-      let newdata = data.reservations;
-      newdata.forEach((elm) => {
-        RESERVATIONS.push(elm);
-      });
+      RESERVATIONS = data.reservations;
       resfreshReservation();
     })
     .catch((error) => {
@@ -434,6 +501,7 @@ function showReservation(number, date) {
         throw new Error(response.statusText);
       } else if (response.status === 403) {
         displayCustomResponce("Forbidden");
+        changeDisplay("login-section");
         throw new Error(response.statusText);
       } else {
         displayCustomResponce("An unexpected error occurred");
@@ -484,6 +552,7 @@ editReservationForm.addEventListener("submit", (e) => {
         throw new Error(response.statusText);
       } else if (response.status === 403) {
         displayCustomResponce("Forbidden");
+        changeDisplay("login-section");
         closeReservationModal();
         throw new Error(response.statusText);
       } else if (response.status === 409) {
@@ -536,6 +605,7 @@ addReservationForm.addEventListener("submit", (e) => {
         throw new Error(response.statusText);
       } else if (response.status === 403) {
         displayCustomResponce("Forbidden");
+        changeDisplay("login-section");
         closeAddReservationModal();
         throw new Error(response.statusText);
       } else if (response.status === 409) {
@@ -559,8 +629,6 @@ addReservationForm.addEventListener("submit", (e) => {
 
 /// ================ expences functions and forms =====================
 function showAllExpences() {
-  displayAllExpencesDOM.innerHTML = "";
-  allExpencesAlert.style.display = "block";
   fetch(`${MY_URL}/expences`, {
     method: "GET",
     headers: {
@@ -575,6 +643,7 @@ function showAllExpences() {
         throw new Error(response.statusText);
       } else if (response.status === 403) {
         displayCustomResponce("Forbidden");
+        changeDisplay("login-section");
         throw new Error(response.statusText);
       } else {
         displayCustomResponce("An unexpected error occurred");
@@ -582,25 +651,11 @@ function showAllExpences() {
       }
     })
     .then((data) => {
-      allExpencesAlert.style.display = "none";
-      const expences = data.expences;
-      expences.forEach((expence) => {
-        const addContent = ` <tr>
-                              <td class="text-start">${expence.title}</td>
-                              <td>${expence.price}</td>
-                              <td class="text-center">
-                                <button class="btn btn-sm btn-outline-info" data-bs-toggle="modal" data-bs-target="#edit-expence-modal" onclick="showExpence('${expence._id}'),setExpenceId('${expence._id}')">
-                                  <i class="fas fa-edit"></i>
-                                </button>
-                              </td>
-                              <td class="text-center">
-                                <button class="btn btn-sm btn-outline-danger" onclick="deleteExpence('${expence._id}')">
-                                  <i class="fas fa-trash"></i>
-                                </button>
-                              </td>
-                            </tr>`;
-        displayAllExpencesDOM.innerHTML += addContent;
-      });
+      EXPENCES = [];
+      EXPENCES = data.expences;
+      resfreshExpences();
+      resfreshMonthlyExpences();
+      updateProfits();
     })
     .catch((error) => {
       console.error(error);
@@ -625,6 +680,7 @@ function deleteExpence(id) {
           throw new Error(response.statusText);
         } else if (response.status === 403) {
           displayCustomResponce("Forbidden");
+          changeDisplay("login-section");
           closeExpenceModal();
           throw new Error(response.statusText);
         } else {
@@ -632,11 +688,10 @@ function deleteExpence(id) {
         }
       })
       .then(() => {
+        closeDailyExpenceModal();
         showAllExpences();
-        closeExpenceModal();
       })
       .catch((error) => {
-        showAllExpences();
         console.error(error);
       });
   }
@@ -658,6 +713,10 @@ function showExpence(id) {
         throw new Error(response.statusText);
       } else if (response.status === 403) {
         displayCustomResponce("Forbidden");
+        changeDisplay("login-section");
+        throw new Error(response.statusText);
+      } else if (response.status === 404) {
+        displayCustomResponce("expence not found");
         throw new Error(response.statusText);
       } else {
         displayCustomResponce("An unexpected error occurred");
@@ -665,11 +724,11 @@ function showExpence(id) {
       }
     })
     .then((data) => {
+      EXPENCE_ID = data.expence._id;
       editExpenceAlert.innerHTML = "";
       editExpenceTitle.value = data.expence.title;
       editExpenceDate.value = data.expence.date;
       editExpencePrice.value = data.expence.price;
-      editExpenceNotes.value = data.expence.notes;
     })
     .catch((error) => console.error(error));
 }
@@ -679,14 +738,13 @@ editExpenceForm.addEventListener("submit", (e) => {
   const title = editExpenceTitle.value;
   const date = editExpenceDate.value;
   const price = editExpencePrice.value;
-  const notes = editExpenceNotes.value;
   fetch(`${MY_URL}/expences/${EXPENCE_ID}`, {
     method: "PATCH",
     headers: {
       "Content-Type": "application/json",
       Authorization: "Bearer " + accessToken,
     },
-    body: JSON.stringify({ title, date, price, notes }),
+    body: JSON.stringify({ title, date, price }),
     credentials: "include",
   })
     .then((response) => {
@@ -698,6 +756,7 @@ editExpenceForm.addEventListener("submit", (e) => {
         throw new Error(response.statusText);
       } else if (response.status === 403) {
         displayCustomResponce("Forbidden");
+        changeDisplay("login-section");
         closeExpenceModal();
         throw new Error(response.statusText);
       } else {
@@ -708,6 +767,7 @@ editExpenceForm.addEventListener("submit", (e) => {
     })
     .then(() => {
       closeExpenceModal();
+      closeDailyExpenceModal();
       showAllExpences();
     })
     .catch((error) => {
@@ -720,14 +780,13 @@ addExpenceForm.addEventListener("submit", (e) => {
   const title = addExpenceTitle.value;
   const date = addExpenceDate.value;
   const price = addExpencePrice.value;
-  const notes = addExpenceNotes.value;
   fetch(`${MY_URL}/expences`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
       Authorization: "Bearer " + accessToken,
     },
-    body: JSON.stringify({ title, date, price, notes }),
+    body: JSON.stringify({ title, date, price }),
     credentials: "include",
   })
     .then((response) => {
@@ -738,6 +797,7 @@ addExpenceForm.addEventListener("submit", (e) => {
         throw new Error(response.statusText);
       } else if (response.status === 403) {
         displayCustomResponce("Forbidden");
+        changeDisplay("login-section");
         throw new Error(response.statusText);
       } else {
         displayCustomResponce("An unexpected error occurred");
@@ -745,17 +805,16 @@ addExpenceForm.addEventListener("submit", (e) => {
       }
     })
     .then(() => {
-      addExpenceTitle.value = "";
       addExpenceDate.value = "";
       addExpencePrice.value = "";
-      addExpenceNotes.value = "";
+      addExpenceTitle.value = "";
     })
     .catch((error) => {
       console.error(error);
     });
 });
 
-/// functions and event listener for calendar
+/// functions and event listener for reservations calendar
 function resfreshReservation() {
   b1TableBody.innerHTML = "";
   b2TableBody.innerHTML = "";
@@ -784,7 +843,7 @@ function showCalendar(month, year, target, bnumber) {
           if (USER_ROLES.includes(2001) || USER_ROLES.includes(5150)) {
             cell.innerHTML = `<button class="btn btn-outline-secondary w-100" data-bs-toggle="modal" data-bs-target="#add-reservation-modal" onclick="setAddReservationData('${newdate}','${bnumber}')">${day}</button>`;
           } else {
-            cell.innerHTML = `<button class="btn btn-outline-secondary w-100">${day}</button>`;
+            cell.innerHTML = `<button class="btn btn-outline-secondary w-100" disabled>${day}</button>`;
           }
           RESERVATIONS.forEach((element) => {
             if (element.bookedDate == newdate && element.number == bnumber) {
@@ -817,6 +876,523 @@ next.addEventListener("click", () => {
   }
   showAllReservations();
 });
+
+/// functions and event listener for expences daily calendar
+function resfreshExpences() {
+  expDailyTable.innerHTML = "";
+  showExpencesCalendar(expM, expY, expDailyTable);
+}
+
+function showExpencesCalendar(month, year, target) {
+  let firstDay = new Date(year, month).getDay();
+  let daysInMonth = 32 - new Date(year, month, 32).getDate();
+  expDailyDate.innerHTML = monthName[month] + " " + year;
+  // filling the calendar with days
+  for (let i = 0; i < 6; i++) {
+    let row = document.createElement("tr");
+    for (let j = 0; j < 7; j++) {
+      if (i === 0 && j < firstDay) {
+        let cell = document.createElement("td");
+        let cellText = document.createTextNode("");
+        cell.appendChild(cellText);
+        row.appendChild(cell);
+      } else {
+        let day = i * 7 + j - firstDay + 1;
+        if (day <= daysInMonth) {
+          let cell = document.createElement("td");
+          let newdate = formatDate(day, year, month);
+          cell.innerHTML = `<button class="btn btn-outline-secondary w-100" disabled>${day}</button>`;
+          EXPENCES.forEach((element) => {
+            if (element.date == newdate) {
+              cell.innerHTML = `<button data-bs-toggle="modal"
+              data-bs-target="#show-daily-expences" onclick="showDailyExpence('${newdate}')" class="btn btn-success w-100">${day}</button>`;
+            }
+          });
+
+          row.appendChild(cell);
+        }
+      }
+    }
+    target.appendChild(row);
+  }
+}
+
+function showDailyExpence(date) {
+  let modal = document.getElementById("daily-expence-modal");
+  modal.innerHTML = "";
+  EXPENCES.forEach((elm) => {
+    if (elm.date == date) {
+      modal.innerHTML += `<tr>
+      <td class="text-start">${elm.title}</td><td class="text-center">${elm.price}</td>
+      <td class="text-center admin-toggle ">
+      <button class="btn btn-sm btn-outline-info" data-bs-toggle="modal" data-bs-target="#edit-expence-modal" onclick="showExpence('${elm._id}')">
+        <i class="fas fa-edit"></i>
+      </button>
+    </td>
+    <td class="text-center admin-toggle">
+      <button class="btn btn-sm btn-outline-danger" onclick="deleteExpence('${elm._id}')">
+        <i class="fas fa-trash"></i>
+      </button>
+    </td>
+    </tr>`;
+    }
+  });
+  checkForRoles();
+}
+
+expDailyPrev.addEventListener("click", () => {
+  expM--;
+  if (expM < 0) {
+    expM = 11;
+    expY--;
+  }
+  resfreshExpences();
+});
+
+expDailyNext.addEventListener("click", () => {
+  expM++;
+  if (expM > 11) {
+    expM = 0;
+    expY++;
+  }
+  resfreshExpences();
+});
+
+/// functions and event listener for expences monthly calendar
+function setExpMM() {
+  expMM = parseInt(expMonthlybtns.value);
+  resfreshMonthlyExpences();
+}
+
+function resfreshMonthlyExpences() {
+  expMonthlyTable.innerHTML = "";
+  expMonthlyDate.innerHTML = expMY;
+  drawMonthlySelectEXP();
+}
+
+function drawMonthlySelectEXP() {
+  let filteredExpences = [];
+  EXPENCES.forEach((elm) => {
+    if (elm.date.startsWith(formatDateM(expMY, expMM))) {
+      filteredExpences.push(elm);
+    }
+  });
+  if (filteredExpences.length == 0) {
+    expMonthlyTable.innerHTML = `<tr><td colspan="5" class="text-start text-center" style="color:red">No Expences Found</td></tr>`;
+  } else {
+    filteredExpences = sortByDate(filteredExpences);
+    filteredExpences.forEach((elm) => {
+      expMonthlyTable.innerHTML += `<tr>
+      <td class="text-start">${elm.title}</td><td class="text-center">${elm.date[8]}${elm.date[9]}</td><td class="text-center">${elm.price} $</td>
+      <td class="text-center admin-toggle">
+      <button class="btn btn-sm btn-outline-info " data-bs-toggle="modal" data-bs-target="#edit-expence-modal" onclick="showExpence('${elm._id}')">
+        <i class="fas fa-edit"></i>
+      </button>
+    </td>
+    <td class="text-center admin-toggle">
+      <button class="btn btn-sm btn-outline-danger" onclick="deleteExpence('${elm._id}')">
+        <i class="fas fa-trash"></i>
+      </button>
+    </td>
+    </tr>`;
+    });
+  }
+  checkForRoles();
+}
+
+expMonthlyPrev.addEventListener("click", () => {
+  expMY--;
+  resfreshMonthlyExpences();
+});
+
+expMonthlyNext.addEventListener("click", () => {
+  expMY++;
+  resfreshMonthlyExpences();
+});
+
+/// ================ revenues functions and forms =====================
+function showAllRevenues() {
+  fetch(`${MY_URL}/revenues`, {
+    method: "GET",
+    headers: {
+      Authorization: "Bearer " + accessToken,
+    },
+  })
+    .then((response) => {
+      if (response.ok) {
+        return response.json();
+      } else if (response.status === 401) {
+        displayCustomResponce("Unauthorized");
+        throw new Error(response.statusText);
+      } else if (response.status === 403) {
+        displayCustomResponce("Forbidden");
+        changeDisplay("login-section");
+        throw new Error(response.statusText);
+      } else {
+        displayCustomResponce("An unexpected error occurred");
+        throw new Error(response.statusText);
+      }
+    })
+    .then((data) => {
+      REVENUES = [];
+      REVENUES = data.revenues;
+      resfreshRevenues();
+      resfreshMonthlyRevenues();
+      updateProfits();
+    })
+    .catch((error) => {
+      console.error(error);
+    });
+}
+
+function deleteRevenue(id) {
+  const response = window.confirm("Confirm Delete");
+  if (response === true) {
+    fetch(`${MY_URL}/revenues/${id}`, {
+      method: "DELETE",
+      headers: {
+        Authorization: "Bearer " + accessToken,
+      },
+    })
+      .then((response) => {
+        if (response.ok) {
+          return response.json();
+        } else if (response.status === 401) {
+          displayCustomResponce("Unauthorized");
+          closeRevenueModal();
+          throw new Error(response.statusText);
+        } else if (response.status === 403) {
+          displayCustomResponce("Forbidden");
+          changeDisplay("login-section");
+          closeRevenueModal();
+          throw new Error(response.statusText);
+        } else {
+          throw new Error(response.statusText);
+        }
+      })
+      .then(() => {
+        closeDailyRevenueModal();
+        showAllRevenues();
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }
+}
+
+function showRevenue(id) {
+  editRevenueAlert.innerHTML = "loading...";
+  fetch(`${MY_URL}/revenues/${id}`, {
+    method: "GET",
+    headers: {
+      Authorization: "Bearer " + accessToken,
+    },
+  })
+    .then((response) => {
+      if (response.ok) {
+        return response.json();
+      } else if (response.status === 401) {
+        displayCustomResponce("Unauthorized");
+        throw new Error(response.statusText);
+      } else if (response.status === 403) {
+        displayCustomResponce("Forbidden");
+        changeDisplay("login-section");
+        throw new Error(response.statusText);
+      } else if (response.status === 404) {
+        displayCustomResponce("revenue not found");
+        throw new Error(response.statusText);
+      } else {
+        displayCustomResponce("An unexpected error occurred");
+        throw new Error(response.statusText);
+      }
+    })
+    .then((data) => {
+      REVENUE_ID = data.revenue._id;
+      editRevenueAlert.innerHTML = "";
+      editRevenueTitle.value = data.revenue.title;
+      editRevenueDate.value = data.revenue.date;
+      editRevenuePrice.value = data.revenue.price;
+    })
+    .catch((error) => console.error(error));
+}
+
+editRevenueForm.addEventListener("submit", (e) => {
+  e.preventDefault();
+  const title = editRevenueTitle.value;
+  const date = editRevenueDate.value;
+  const price = editRevenuePrice.value;
+  fetch(`${MY_URL}/revenues/${REVENUE_ID}`, {
+    method: "PATCH",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: "Bearer " + accessToken,
+    },
+    body: JSON.stringify({ title, date, price }),
+    credentials: "include",
+  })
+    .then((response) => {
+      if (response.ok) {
+        return response.json();
+      } else if (response.status === 401) {
+        displayCustomResponce("Unauthorized");
+        closerevenueModal();
+        throw new Error(response.statusText);
+      } else if (response.status === 403) {
+        displayCustomResponce("Forbidden");
+        changeDisplay("login-section");
+        closerevenueModal();
+        throw new Error(response.statusText);
+      } else {
+        displayCustomResponce("An unexpected error occurred");
+        closerevenueModal();
+        throw new Error(response.statusText);
+      }
+    })
+    .then(() => {
+      closeRevenueModal();
+      closeDailyRevenueModal();
+      showAllRevenues();
+    })
+    .catch((error) => {
+      console.error(error);
+    });
+});
+
+addRevenueForm.addEventListener("submit", (e) => {
+  e.preventDefault();
+  const title = addRevenueTitle.value;
+  const date = addRevenueDate.value;
+  const price = addRevenuePrice.value;
+  fetch(`${MY_URL}/revenues`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: "Bearer " + accessToken,
+    },
+    body: JSON.stringify({ title, date, price }),
+    credentials: "include",
+  })
+    .then((response) => {
+      if (response.ok) {
+        return response.json();
+      } else if (response.status === 401) {
+        displayCustomResponce("Unauthorized");
+        throw new Error(response.statusText);
+      } else if (response.status === 403) {
+        displayCustomResponce("Forbidden");
+        changeDisplay("login-section");
+        throw new Error(response.statusText);
+      } else {
+        displayCustomResponce("An unexpected error occurred");
+        throw new Error(response.statusText);
+      }
+    })
+    .then(() => {
+      addRevenueDate.value = "";
+      addRevenuePrice.value = "";
+      addRevenueTitle.value = "";
+    })
+    .catch((error) => {
+      console.error(error);
+    });
+});
+
+/// functions and event listener for revenues daily calendar
+function resfreshRevenues() {
+  revDailyTable.innerHTML = "";
+  showRevenuesCalendar(revM, revY, revDailyTable);
+}
+
+function showRevenuesCalendar(month, year, target) {
+  let firstDay = new Date(year, month).getDay();
+  let daysInMonth = 32 - new Date(year, month, 32).getDate();
+  revDailyDate.innerHTML = monthName[month] + " " + year;
+  // filling the calendar with days
+  for (let i = 0; i < 6; i++) {
+    let row = document.createElement("tr");
+    for (let j = 0; j < 7; j++) {
+      if (i === 0 && j < firstDay) {
+        let cell = document.createElement("td");
+        let cellText = document.createTextNode("");
+        cell.appendChild(cellText);
+        row.appendChild(cell);
+      } else {
+        let day = i * 7 + j - firstDay + 1;
+        if (day <= daysInMonth) {
+          let cell = document.createElement("td");
+          let newdate = formatDate(day, year, month);
+          cell.innerHTML = `<button class="btn btn-outline-secondary w-100" disabled>${day}</button>`;
+          REVENUES.forEach((element) => {
+            if (element.date == newdate) {
+              cell.innerHTML = `<button data-bs-toggle="modal"
+              data-bs-target="#show-daily-revenues" onclick="showDailyRevenue('${newdate}')" class="btn btn-success w-100">${day}</button>`;
+            }
+          });
+
+          row.appendChild(cell);
+        }
+      }
+    }
+    target.appendChild(row);
+  }
+}
+
+function showDailyRevenue(date) {
+  let modal = document.getElementById("daily-revenue-modal");
+  modal.innerHTML = "";
+  REVENUES.forEach((elm) => {
+    if (elm.date == date) {
+      modal.innerHTML += `<tr>
+      <td class="text-start">${elm.title}</td><td class="text-center">${elm.price}</td>
+      <td class="text-center admin-toggle ">
+      <button class="btn btn-sm btn-outline-info" data-bs-toggle="modal" data-bs-target="#edit-revenue-modal" onclick="showRevenue('${elm._id}')">
+        <i class="fas fa-edit"></i>
+      </button>
+    </td>
+    <td class="text-center admin-toggle">
+      <button class="btn btn-sm btn-outline-danger" onclick="deleteRevenue('${elm._id}')">
+        <i class="fas fa-trash"></i>
+      </button>
+    </td>
+    </tr>`;
+    }
+  });
+  checkForRoles();
+}
+
+revDailyPrev.addEventListener("click", () => {
+  revM--;
+  if (revM < 0) {
+    revM = 11;
+    revY--;
+  }
+  resfreshRevenues();
+});
+
+revDailyNext.addEventListener("click", () => {
+  revM++;
+  if (revM > 11) {
+    revM = 0;
+    revY++;
+  }
+  resfreshRevenues();
+});
+
+/// functions and event listener for revenues monthly calendar
+function setrevMM() {
+  revMM = parseInt(revMonthlybtns.value);
+  resfreshMonthlyRevenues();
+}
+
+function resfreshMonthlyRevenues() {
+  revMonthlyTable.innerHTML = "";
+  revMonthlyDate.innerHTML = revMY;
+  drawMonthlySelectrev();
+}
+
+function drawMonthlySelectrev() {
+  let filteredrevenues = [];
+  REVENUES.forEach((elm) => {
+    if (elm.date.startsWith(formatDateM(revMY, revMM))) {
+      filteredrevenues.push(elm);
+    }
+  });
+  if (filteredrevenues.length == 0) {
+    revMonthlyTable.innerHTML = `<tr><td colspan="5" class="text-start text-center" style="color:red">No Revenues Found</td></tr>`;
+  } else {
+    filteredrevenues = sortByDate(filteredrevenues);
+    filteredrevenues.forEach((elm) => {
+      revMonthlyTable.innerHTML += `<tr>
+      <td class="text-start">${elm.title}</td><td class="text-center">${elm.date[8]}${elm.date[9]}</td><td class="text-center">${elm.price} $</td>
+      <td class="text-center admin-toggle">
+      <button class="btn btn-sm btn-outline-info " data-bs-toggle="modal" data-bs-target="#edit-revenue-modal" onclick="showRevenue('${elm._id}')">
+        <i class="fas fa-edit"></i>
+      </button>
+    </td>
+    <td class="text-center admin-toggle">
+      <button class="btn btn-sm btn-outline-danger" onclick="deleteRevenue('${elm._id}')">
+        <i class="fas fa-trash"></i>
+      </button>
+    </td>
+    </tr>`;
+    });
+  }
+  checkForRoles();
+}
+
+revMonthlyPrev.addEventListener("click", () => {
+  revMY--;
+  resfreshMonthlyRevenues();
+});
+
+revMonthlyNext.addEventListener("click", () => {
+  revMY++;
+  resfreshMonthlyRevenues();
+});
+
+/// profit section
+function setProfM() {
+  profM = parseInt(profitSelect.value);
+  showAllExpences();
+  showAllRevenues();
+}
+
+profitPrev.addEventListener("click", () => {
+  profY--;
+  updateProfits();
+});
+
+profitNext.addEventListener("click", () => {
+  profY++;
+  updateProfits();
+});
+
+function updateProfits() {
+  const yearlyRev = [];
+  const yearlyExp = [];
+  const monthlyRev = [];
+  const monthlyExp = [];
+  let yearlyRevValue = 0;
+  let yearlyExpValue = 0;
+  let monthlyRevValue = 0;
+  let monthlyExpValue = 0;
+  let YearlyresultValue = 0;
+  let monthlyResultValue = 0;
+  REVENUES.forEach((elm) => {
+    if (elm.date.startsWith(profY)) {
+      yearlyRevValue += elm.price;
+      yearlyRev.push(elm);
+    }
+  });
+  EXPENCES.forEach((elm) => {
+    if (elm.date.startsWith(profY)) {
+      yearlyExpValue += elm.price;
+      yearlyExp.push(elm);
+    }
+  });
+  yearlyRev.forEach((elm) => {
+    if (elm.date.startsWith(formatDateM(profY, profM))) {
+      monthlyRevValue += elm.price;
+      monthlyRev.push(elm);
+    }
+  });
+  yearlyExp.forEach((elm) => {
+    if (elm.date.startsWith(formatDateM(profY, profM))) {
+      monthlyExpValue += elm.price;
+      monthlyExp.push(elm);
+    }
+  });
+  YearlyresultValue = yearlyRevValue - yearlyExpValue;
+  monthlyResultValue = monthlyRevValue - monthlyExpValue;
+
+  profityearlyRev.innerHTML = yearlyRevValue;
+  profityearlyExp.innerHTML = yearlyExpValue;
+  profityearlyResult.innerHTML = YearlyresultValue;
+  profitMonthlyRev.innerHTML = monthlyRevValue;
+  profitMonthlyExp.innerHTML = monthlyExpValue;
+  profitMonthlyResult.innerHTML = monthlyResultValue;
+  profitDate.innerHTML = profY;
+}
 
 /// global functions
 function newAlert(target, message) {
@@ -865,7 +1441,52 @@ function clearExpenceModal() {
   editExpenceDate.value = "";
   editExpenceTitle.value = "";
   editExpencePrice.value = "";
-  editExpenceNotes.value = "";
+}
+function closeRevenueModal() {
+  let button = document.getElementById("revenue-modal-btn");
+  let event = new MouseEvent("click", {
+    view: window,
+    bubbles: true,
+    cancelable: true,
+  });
+  button.dispatchEvent(event);
+  clearRevenueModal();
+}
+function closeHeader() {
+  const screenWidth = window.innerWidth;
+  if (screenWidth < 580) {
+    let button = document.getElementById("header-btn");
+    let event = new MouseEvent("click", {
+      view: window,
+      bubbles: true,
+      cancelable: true,
+    });
+    button.dispatchEvent(event);
+  }
+}
+function clearRevenueModal() {
+  editRevenueAlert.innerHTML = "";
+  editRevenueDate.value = "";
+  editRevenueTitle.value = "";
+  editRevenuePrice.value = "";
+}
+function closeDailyExpenceModal() {
+  let button = document.getElementById("daily-expence-modal-btn");
+  let event = new MouseEvent("click", {
+    view: window,
+    bubbles: true,
+    cancelable: true,
+  });
+  button.dispatchEvent(event);
+}
+function closeDailyRevenueModal() {
+  let button = document.getElementById("daily-revenue-modal-btn");
+  let event = new MouseEvent("click", {
+    view: window,
+    bubbles: true,
+    cancelable: true,
+  });
+  button.dispatchEvent(event);
 }
 function closeReservationModal() {
   let button2 = document.getElementById("reservation-modal-btn");
@@ -912,82 +1533,90 @@ function formatDate(day, year, month) {
   let newDay = day < 10 ? `0${day}` : String(day);
   return `${year}-${newMonth}-${newDay}`;
 }
+function formatDateM(year, month) {
+  month += 1;
+  let newMonth = month < 10 ? `0${month}` : String(month);
+  return `${year}-${newMonth}`;
+}
 function setAddReservationData(date, numb) {
   addReservationDate.value = date;
   addReservationNumb.innerHTML = numb;
+}
+function setAddExpenceData(date) {
+  addExpenceDate.value = date;
 }
 function changeDisplay(target) {
   loginSection.style.display = "none";
   allUsersSection.style.display = "none";
   reservationSection.style.display = "none";
-  expencesSection.style.display = "none";
+  finnaceSection.style.display = "none";
   waitingResponse.style.display = "none";
   document.getElementById(target).style.display = "block";
 }
 function showElements() {
-  const navUL = document.getElementById("header-ul");
-  const addExpence = document.getElementById("add-expence-tab");
+  const navUL = document.getElementById("header-content");
+  navUL.innerHTML = `
+          <a class="navbar-brand">Night In Paradise</a>
+          <button
+            class="navbar-toggler d-lg-none"
+            id="header-btn"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#collapsibleNavId"
+            aria-controls="collapsibleNavId"
+            aria-expanded="false"
+            aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="collapsibleNavId">
+            <ul class="navbar-nav me-auto mt-2 mt-lg-0">
+             <li class="nav-item">
+              <a
+                class="nav-link "
+                aria-current="page"
+                onclick="changeDisplay('reservations-section'),closeHeader()"
+                >Home </a>
+              </li>
+              <li class="nav-item admin-toggle" >
+                <a class="nav-link" onclick="changeDisplay('all-users-section'),showAllUsers(),closeHeader()">Users</a>
+              </li>
+              <li class="nav-item" >
+                <a class="nav-link" onclick="changeDisplay('finance-section'),showAllExpences(),closeHeader()">Finance</a>
+              </li>
+            </ul>
+          </div>`;
+  checkForRoles();
+}
+function checkForRoles() {
+  let admin = document.querySelectorAll(".admin-toggle");
+  let editor = document.querySelectorAll(".editor-toggle");
+  let adminInput = document.querySelectorAll(".admin-input");
+  let editorInput = document.querySelectorAll(".editor-input");
   if (USER_ROLES.includes(5150)) {
-    removeDisabled();
-    addExpence.style.display = "block";
-    document.getElementById("edit-reservation-button").style.display = "block";
-    document.getElementById("delete-reservation-button").style.display =
-      "block";
-    document.getElementById("edit-reservation-contact-div").style.display =
-      "block";
-    navUL.innerHTML = `<li class="nav-item">
-                        <a
-                          class="nav-link "
-                          aria-current="page"
-                          onclick="changeDisplay('reservations-section')"
-                          >Home </a>
-                        </li>
-                        <li class="nav-item" id="">
-                          <a class="nav-link" onclick="changeDisplay('all-users-section'),showAllUsers()">Users</a>
-                        </li>
-                        <li class="nav-item" id="">
-                          <a class="nav-link" onclick="changeDisplay('all-expences-section'),showAllExpences()">Expences</a>
-                        </li>`;
   } else if (USER_ROLES.includes(2001)) {
-    removeDisabled();
-    addExpence.style.display = "block";
-    document.getElementById("edit-reservation-button").style.display = "block";
-    document.getElementById("delete-reservation-button").style.display =
-      "block";
-    document.getElementById("edit-reservation-contact-div").style.display =
-      "block";
-    navUL.innerHTML = `<li class="nav-item">
-                        <a
-                          class="nav-link "
-                          aria-current="page"
-                          onclick="changeDisplay('reservations-section')"
-                          >Home </a
-                        >
-                      </li>
-                      <li class="nav-item" id="">
-                        <a class="nav-link" onclick="changeDisplay('all-expences-section'),showAllExpences()">Expences</a>
-                      </li>`;
+    admin.forEach((elm) => {
+      elm.style.display = "none";
+    });
+    adminInput.forEach((elm) => {
+      elm.setAttribute("disabled", "true");
+    });
   } else {
-    document.getElementById("add-expence-tab").style.display = "none";
-    addExpence.style.display = "none";
-    navUL.innerHTML = `<li class="nav-item">
-                        <a
-                          class="nav-link "
-                          aria-current="page"
-                          onclick="changeDisplay('reservations-section')"
-                          >Home </a
-                        >
-                      </li>
-                      <li class="nav-item" id="">
-                        <a class="nav-link" onclick="changeDisplay('all-expences-section'),showAllExpences()">Expences</a>
-                      </li>`;
+    admin.forEach((elm) => {
+      elm.style.display = "none";
+    });
+    adminInput.forEach((elm) => {
+      elm.setAttribute("disabled", "true");
+    });
+    editor.forEach((elm) => {
+      elm.style.display = "none";
+    });
+    editorInput.forEach((elm) => {
+      elm.setAttribute("disabled", "true");
+    });
   }
 }
-function removeDisabled() {
-  editReservationName.removeAttribute("disabled", "");
-  editReservationCont.removeAttribute("disabled", "");
-  editReservationPrice.removeAttribute("disabled", "");
-  editReservationNotes.removeAttribute("disabled", "");
+function sortByDate(arr) {
+  return arr.sort((a, b) => new Date(b.date) - new Date(a.date));
 }
 function ScaleUp() {
   fetch(`${MY_URL}/data`, {
@@ -1002,11 +1631,13 @@ function ScaleUp() {
     })
     .catch((error) => {
       const ServerResponse = document.getElementById("server-up");
-      ServerResponse.innerHTML = `<h1 style="color:red">An unexpected error occurred</h1><h2 style="color:red">try again later</h2>`;
+      ServerResponse.innerHTML = `<img src="./img/JM - P - BW - PNG.png" style="width: 250px" /><h1 style="color:red">An unexpected error occurred</h1><h2 style="color:red">try again later</h2>`;
       console.error(error);
     });
 }
-function setExpenceId(id) {
-  EXPENCE_ID = id;
-}
 ScaleUp();
+
+// footer
+let date = new Date().getFullYear();
+let copy = document.getElementById("copy");
+copy.innerHTML = `&copy; ${date}`;
