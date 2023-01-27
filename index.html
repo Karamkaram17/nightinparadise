@@ -17,12 +17,12 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" />
   </head>
-  <body class="bg-secondary">
+  <body class="text-warning bg-secondary">
     <!-- / header -->
-    <header class="text-bg-dark mb-2">
-      <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
-        <div class="container" id="header-content">
-          <a class="navbar-brand">Night In Paradise</a>
+    <header class="text-warning bg-dark text-warning mb-2">
+      <nav class="text-warning navbar navbar-expand-sm navbar-dark bg-dark">
+        <div class="text-warning container" id="header-content">
+          <a class="text-warning navbar-brand">Night In Paradise</a>
         </div>
       </nav>
     </header>
@@ -31,127 +31,131 @@
     <div id="waiting-response">
       <div id="server-up">
         <img src="./img/JM - P - BW - PNG.png" style="width: 250px" />
-        <h1 class="zoom-text">waiting for server response</h1>
-        <h2>it may take a few minutes</h2>
+        <h1 class="text-warning zoom-text">waiting for server response</h1>
+        <h2 class="text-warning zoom-text2">it may take a few minutes</h2>
       </div>
     </div>
     <!-- / login section -->
-    <section id="login-section">
+    <section id="login-section" class="pb-4">
       <form
         id="login-form"
-        class="text-bg-dark pt-3 px-3 rounded-4 d-flex flex-column border border-dark border-3"
+        class="text-warning bg-dark text-warning pt-3 px-3 rounded-4 d-flex flex-column border border-dark border-3"
         autocomplete="off">
-        <h1 class="py-3 text-center">Login</h1>
-        <div class="form-floating mb-3">
+        <h1 class="text-warning py-3 text-center">Login</h1>
+        <div class="text-warning form-floating mb-3">
           <input
             type="text"
-            class="form-control text-bg-dark"
+            class="text-warning form-control bg-dark text-warning"
             name="username"
             id="username-login-input"
             placeholder="username"
             minlength="5"
             required />
-          <label for="username-login-input" class="text-secondary"
+          <label for="username-login-input" class="text-warning text-secondary"
             >Username</label
           >
         </div>
-        <div class="form-floating mb-3">
+        <div class="text-warning form-floating mb-3">
           <input
             type="password"
-            class="form-control text-bg-dark"
+            class="text-warning form-control bg-dark text-warning"
             name="password"
             id="password-login-input"
             placeholder="username"
             minlength="5"
             required />
-          <label for="password-login-input" class="text-secondary"
+          <label for="password-login-input" class="text-warning text-secondary"
             >Password</label
           >
         </div>
-        <button type="submit" class="btn btn-secondary mb-3">Submit</button>
+        <button type="submit" class="text-warning btn btn-secondary mb-3">
+          Submit
+        </button>
       </form>
     </section>
 
     <!-- / reservations section -->
-    <section id="reservations-section" class="text-bg-secondary">
+    <section
+      id="reservations-section"
+      class="text-warning text-bg-secondary pb-4">
       <div
-        class="d-flex justify-content-around align-items-center p-2 text-bg-dark border-bottom border-secondary">
-        <button id="b1-prev" class="btn btn-secondary"><<</button>
+        class="text-warning d-flex justify-content-around align-items-center p-2 bg-dark text-warning border-bottom border-secondary">
+        <button id="b1-prev" class="text-warning btn btn-secondary"><<</button>
         <span id="b1-date"></span>
-        <button id="b1-next" class="btn btn-secondary">>></button>
+        <button id="b1-next" class="text-warning btn btn-secondary">>></button>
       </div>
       <div
-        class="d-flex justify-content-center align-items-center p-2 text-bg-dark">
+        class="text-warning d-flex justify-content-center align-items-center p-2 bg-dark text-warning">
         Bungalow 1
       </div>
-      <table class="w-100 p-1 text-bg-dark">
+      <table class="text-warning w-100 p-1 bg-dark text-warning">
         <thead>
           <tr>
             <th
-              class="text-center text-bg-secondary py-2 w-auto border border-3 border-dark rounded">
+              class="text-warning text-center text-bg-secondary py-2 w-auto border border-3 border-dark rounded">
               Sun
             </th>
             <th
-              class="text-center text-bg-secondary py-2 w-auto border border-3 border-dark rounded">
+              class="text-warning text-center text-bg-secondary py-2 w-auto border border-3 border-dark rounded">
               Mon
             </th>
             <th
-              class="text-center text-bg-secondary py-2 w-auto border border-3 border-dark rounded">
+              class="text-warning text-center text-bg-secondary py-2 w-auto border border-3 border-dark rounded">
               Tue
             </th>
             <th
-              class="text-center text-bg-secondary py-2 w-auto border border-3 border-dark rounded">
+              class="text-warning text-center text-bg-secondary py-2 w-auto border border-3 border-dark rounded">
               Wed
             </th>
             <th
-              class="text-center text-bg-secondary py-2 w-auto border border-3 border-dark rounded">
+              class="text-warning text-center text-bg-secondary py-2 w-auto border border-3 border-dark rounded">
               Thu
             </th>
             <th
-              class="text-center text-bg-secondary py-2 w-auto border border-3 border-dark rounded">
+              class="text-warning text-center text-bg-secondary py-2 w-auto border border-3 border-dark rounded">
               Fri
             </th>
             <th
-              class="text-center text-bg-secondary py-2 w-auto border border-3 border-dark rounded">
+              class="text-warning text-center text-bg-secondary py-2 w-auto border border-3 border-dark rounded">
               Sat
             </th>
           </tr>
         </thead>
         <tbody id="b1-table-body"></tbody>
       </table>
-      <table class="w-100 p-1 text-bg-dark">
+      <table class="text-warning w-100 p-1 bg-dark text-warning">
         <div
-          class="d-flex justify-content-center align-items-center p-2 text-bg-dark mt-3">
+          class="text-warning d-flex justify-content-center align-items-center p-2 bg-dark text-warning mt-3">
           Bungalow 2
         </div>
         <thead>
           <tr>
             <th
-              class="text-center text-bg-secondary py-2 w-auto border border-3 border-dark rounded">
+              class="text-warning text-center text-bg-secondary py-2 w-auto border border-3 border-dark rounded">
               Sun
             </th>
             <th
-              class="text-center text-bg-secondary py-2 w-auto border border-3 border-dark rounded">
+              class="text-warning text-center text-bg-secondary py-2 w-auto border border-3 border-dark rounded">
               Mon
             </th>
             <th
-              class="text-center text-bg-secondary py-2 w-auto border border-3 border-dark rounded">
+              class="text-warning text-center text-bg-secondary py-2 w-auto border border-3 border-dark rounded">
               Tue
             </th>
             <th
-              class="text-center text-bg-secondary py-2 w-auto border border-3 border-dark rounded">
+              class="text-warning text-center text-bg-secondary py-2 w-auto border border-3 border-dark rounded">
               Wed
             </th>
             <th
-              class="text-center text-bg-secondary py-2 w-auto border border-3 border-dark rounded">
+              class="text-warning text-center text-bg-secondary py-2 w-auto border border-3 border-dark rounded">
               Thu
             </th>
             <th
-              class="text-center text-bg-secondary py-2 w-auto border border-3 border-dark rounded">
+              class="text-warning text-center text-bg-secondary py-2 w-auto border border-3 border-dark rounded">
               Fri
             </th>
             <th
-              class="text-center text-bg-secondary py-2 w-auto border border-3 border-dark rounded">
+              class="text-warning text-center text-bg-secondary py-2 w-auto border border-3 border-dark rounded">
               Sat
             </th>
           </tr>
@@ -161,12 +165,12 @@
     </section>
 
     <!-- / users section -->
-    <section id="all-users-section">
+    <section id="all-users-section" class="pb-4">
       <!-- Nav tabs -->
-      <ul class="nav nav-tabs text-bg-dark" role="tablist">
-        <li class="nav-item" role="presentation">
+      <ul class="text-warning nav nav-tabs bg-dark text-warning" role="tablist">
+        <li class="text-warning nav-item" role="presentation">
           <button
-            class="nav-link active"
+            class="text-warning nav-link active"
             id="all-users-tab"
             data-bs-toggle="tab"
             data-bs-target="#home"
@@ -178,9 +182,9 @@
             all users
           </button>
         </li>
-        <li class="nav-item" role="presentation">
+        <li class="text-warning nav-item" role="presentation">
           <button
-            class="nav-link"
+            class="text-warning nav-link"
             id="add-user-tab"
             data-bs-toggle="tab"
             data-bs-target="#add-user"
@@ -193,117 +197,137 @@
         </li>
       </ul>
       <!-- Tab panes -->
-      <div class="tab-content">
+      <div class="text-warning tab-content">
         <div
-          class="tab-pane active"
+          class="text-warning tab-pane active"
           id="home"
           role="tabpanel"
           aria-labelledby="all-users-tab">
-          <div id="allusers-alert" class="text-center text-bg-success">
+          <div
+            id="allusers-alert"
+            class="text-warning text-center text-bg-success">
             loading...
           </div>
-          <table class="table table-dark table-striped text-center">
+          <table
+            class="text-warning table table-dark table-striped text-center">
             <thead>
               <tr>
-                <th scope="col" class="col text-start">Name</th>
-                <th scope="col" class="col-1">Role</th>
-                <th scope="col" class="col-1"><i class="fas fa-edit"></i></th>
-                <th scope="col" class="col-1"><i class="fas fa-trash"></i></th>
+                <th scope="col" class="text-warning col text-start">Name</th>
+                <th scope="col" class="text-warning col-1">Role</th>
+                <th scope="col" class="text-warning col-1">
+                  <i class="fas fa-edit"></i>
+                </th>
+                <th scope="col" class="text-warning col-1">
+                  <i class="fas fa-trash"></i>
+                </th>
               </tr>
             </thead>
             <tbody id="all-users-table"></tbody>
           </table>
         </div>
         <div
-          class="tab-pane"
+          class="text-warning tab-pane"
           id="add-user"
           role="tabpanel"
           aria-labelledby="add-user-tab">
           <form
             id="add-user-form"
-            class="text-bg-dark pt-3 px-3 rounded-bottom d-flex flex-column"
+            class="text-warning bg-dark text-warning pt-3 px-3 rounded-bottom d-flex flex-column"
             autocomplete="off">
-            <h1 class="py-3 text-center">Add User</h1>
-            <div class="form-floating mb-3">
+            <h1 class="text-warning py-3 text-center">Add User</h1>
+            <div class="text-warning form-floating mb-3">
               <input
                 type="text"
-                class="form-control text-bg-dark"
+                class="text-warning form-control bg-dark text-warning"
                 name="username"
                 id="username-adduser-input"
                 placeholder="username"
                 minlength="5"
                 maxlength="15"
                 required />
-              <label for="username-adduser-input" class="text-secondary"
+              <label
+                for="username-adduser-input"
+                class="text-warning text-secondary"
                 >Username</label
               >
             </div>
-            <div class="form-floating mb-3">
+            <div class="text-warning form-floating mb-3">
               <input
                 type="password"
-                class="form-control text-bg-dark"
+                class="text-warning form-control bg-dark text-warning"
                 name="password"
                 id="password-adduser-input"
                 placeholder="username"
                 minlength="5"
                 required />
-              <label for="password-adduser-input" class="text-secondary"
+              <label
+                for="password-adduser-input"
+                class="text-warning text-secondary"
                 >Password</label
               >
             </div>
-            <div class="form-check mx-auto">
+            <div class="text-warning form-check mx-auto">
               <input
-                class="form-check-input"
+                class="text-warning form-check-input"
                 type="checkbox"
                 value="admin"
                 id="admin-adduser-checkbox" />
-              <label class="form-check-label" for="admin-adduser-checkbox">
+              <label
+                class="text-warning form-check-label"
+                for="admin-adduser-checkbox">
                 Admin
               </label>
             </div>
-            <div class="form-check mx-auto">
+            <div class="text-warning form-check mx-auto">
               <input
-                class="form-check-input"
+                class="text-warning form-check-input"
                 type="checkbox"
                 value="editor"
                 id="editor-adduser-checkbox" />
-              <label class="form-check-label" for="editor-adduser-checkbox">
+              <label
+                class="text-warning form-check-label"
+                for="editor-adduser-checkbox">
                 Editor
               </label>
             </div>
-            <button type="submit" class="btn btn-secondary my-5">Submit</button>
+            <button type="submit" class="text-warning btn btn-secondary my-5">
+              Submit
+            </button>
           </form>
         </div>
       </div>
     </section>
 
     <!-- / finance section -->
-    <section id="finance-section">
+    <section id="finance-section" class="pb-4">
       <!-- Nav tabs -->
-      <ul class="nav nav-tabs text-bg-dark" id="finance-nav" role="tablist">
-        <li class="nav-item" role="presentation">
+      <ul
+        class="text-warning nav nav-tabs bg-dark text-warning"
+        id="finance-nav"
+        role="tablist">
+        <li class="text-warning nav-item" role="presentation">
           <a
             href="#expences-tab"
-            class="nav-link active"
+            class="text-warning nav-link active"
             data-bs-toggle="tab"
             aria-current="page"
             onclick="showAllExpences()"
             >Expences</a
           >
         </li>
-        <li class="nav-item" role="presentation">
+        <li class="text-warning nav-item" role="presentation">
           <a
             href="#revenues-tab"
-            class="nav-link"
+            class="text-warning nav-link"
             data-bs-toggle="tab"
             onclick="showAllRevenues()"
             >Revenues</a
           >
         </li>
-        <li class="nav-item" role="presentation">
+        <li class="text-warning nav-item" role="presentation">
           <a
             href="#profit-tab"
-            class="nav-link"
+            class="text-warning nav-link"
             data-bs-toggle="tab"
             onclick="showAllExpences(),showAllRevenues()"
             >Profit</a
@@ -311,85 +335,96 @@
         </li>
       </ul>
       <!-- Tab panes -->
-      <div class="tab-content" id="myTabContent">
+      <div class="text-warning tab-content" id="myTabContent">
         <div
-          class="tab-pane fade show active"
+          class="text-warning tab-pane fade show active"
           id="expences-tab"
           role="tabpanel">
           <!-- Nav tabs -->
           <ul
-            class="nav nav-tabs text-bg-dark"
+            class="text-warning nav nav-tabs bg-dark text-warning"
             id="expences-nav"
             role="tablist">
-            <li class="nav-item">
+            <li class="text-warning nav-item">
               <a
                 href="#daily-expences-tab"
-                class="nav-link active"
+                class="text-warning nav-link active"
                 data-bs-toggle="tab"
                 aria-current="page"
                 onclick="showAllExpences()"
                 >Daily</a
               >
             </li>
-            <li class="nav-item" role="presentation">
+            <li class="text-warning nav-item" role="presentation">
               <a
                 href="#monthly-expences-tab"
-                class="nav-link"
+                class="text-warning nav-link"
                 data-bs-toggle="tab"
                 onclick="showAllExpences()"
                 >Monthly</a
               >
             </li>
             <li
-              class="nav-item editor-toggle"
+              class="text-warning nav-item editor-toggle"
               id="add-expence-btn"
               role="presentation">
-              <a href="#add-expence-tabb" class="nav-link" data-bs-toggle="tab"
+              <a
+                href="#add-expence-tabb"
+                class="text-warning nav-link"
+                data-bs-toggle="tab"
                 >Add Expence</a
               >
             </li>
           </ul>
           <!-- Tab panes -->
-          <div class="tab-content" id="myTabContent">
+          <div class="text-warning tab-content" id="myTabContent">
             <div
-              class="tab-pane fade show active"
+              class="text-warning tab-pane fade show active"
               id="daily-expences-tab"
               role="tabpanel">
               <div
-                class="d-flex justify-content-around align-items-center p-2 text-bg-dark border-bottom border-secondary">
-                <button id="expence-prev" class="btn btn-secondary"><<</button>
+                class="text-warning d-flex justify-content-around align-items-center p-2 bg-dark text-warning border-bottom border-secondary">
+                <button
+                  id="expence-prev"
+                  class="text-warning btn btn-secondary">
+                  <<
+                </button>
                 <span id="expence-date"></span>
-                <button id="expence-next" class="btn btn-secondary">>></button>
+                <button
+                  id="expence-next"
+                  class="text-warning btn btn-secondary">
+                  >>
+                </button>
               </div>
-              <table class="w-100 p-1 text-bg-dark">
+              <table class="text-warning w-100 p-1 bg-dark text-warning">
                 <thead>
                   <tr>
                     <th
-                      class="text-center text-bg-secondary py-2 w-auto border border-3 border-dark rounded">
+                      class="text-warning text-center text-bg-secondary py-2 w-auto border border-3 border-dark rounded">
                       Sun
                     </th>
                     <th
-                      class="text-center text-bg-secondary py-2 w-auto border border-3 border-dark rounded">
+                      class="text-warning text-center text-bg-secondary py-2 w-auto border border-3 border-dark rounded">
                       Mon
                     </th>
                     <th
-                      class="text-center text-bg-secondary py-2 w-auto border border-3 border-dark rounded">
+                      class="text-warning text-center text-bg-secondary py-2 w-auto border border-3 border-dark rounded">
                       Tue
                     </th>
                     <th
-                      class="text-center text-bg-secondary py-2 w-auto border border-3 border-dark rounded">
+                      class="text-warning text-center text-bg-secondary py-2 w-auto border border-3 border-dark rounded">
                       Wed
                     </th>
                     <th
-                      class="text-center text-bg-secondary py-2 w-auto border border-3 border-dark rounded">
+                      class="text-warning text-center text-bg-secondary py-2 w-auto border border-3 border-dark rounded">
                       Thu
                     </th>
                     <th
-                      class="text-center text-bg-secondary py-2 w-auto border border-3 border-dark rounded">
+                      class="text-warning text-center text-bg-secondary py-2 w-auto border border-3 border-dark rounded">
                       Fri
                     </th>
                     <th
-                      class="text-center text-bg-secondary py-2 w-auto border border-3 border-dark rounded">
+                      class="text-warning text-center text-bg-secondary py-2 w-auto border border-3 border-dark rounded">
                       Sat
                     </th>
                   </tr>
@@ -398,23 +433,27 @@
               </table>
             </div>
             <div
-              class="tab-pane fade text-bg-dark"
+              class="text-warning tab-pane fade bg-dark text-warning"
               id="monthly-expences-tab"
               role="tabpanel">
               <div
-                class="d-flex justify-content-around align-items-center p-2 text-bg-dark border-bottom border-secondary">
-                <button id="expence-prev-monthly" class="btn btn-secondary">
+                class="text-warning d-flex justify-content-around align-items-center p-2 bg-dark text-warning border-bottom border-secondary">
+                <button
+                  id="expence-prev-monthly"
+                  class="text-warning btn btn-secondary">
                   <<
                 </button>
                 <span id="expence-date-monthly"></span>
-                <button id="expence-next-monthly" class="btn btn-secondary">
+                <button
+                  id="expence-next-monthly"
+                  class="text-warning btn btn-secondary">
                   >>
                 </button>
               </div>
-              <div class="w-50 mx-auto my-1">
+              <div class="text-warning w-50 mx-auto my-1">
                 <select
                   onchange="setExpMM()"
-                  class="form-select text-bg-secondary"
+                  class="text-warning form-select text-bg-secondary"
                   id="exp-monthly-thead">
                   <option value="0">January</option>
                   <option value="1">February</option>
@@ -431,16 +470,18 @@
                 </select>
               </div>
               <table
-                class="table table-dark table-striped text-center border-top">
+                class="text-warning table table-dark table-striped text-center border-top">
                 <thead>
                   <tr>
-                    <th scope="col" class="col text-start">Expence</th>
-                    <th scope="col" class="col-1">Day</th>
-                    <th scope="col" class="col-2">$</th>
-                    <th scope="col" class="col-1 admin-toggle">
+                    <th scope="col" class="text-warning col text-start">
+                      Expence
+                    </th>
+                    <th scope="col" class="text-warning col-1">Day</th>
+                    <th scope="col" class="text-warning col-2">$</th>
+                    <th scope="col" class="text-warning col-1 admin-toggle">
                       <i class="fas fa-edit"></i>
                     </th>
-                    <th scope="col" class="col-1 admin-toggle">
+                    <th scope="col" class="text-warning col-1 admin-toggle">
                       <i class="fas fa-trash"></i>
                     </th>
                   </tr>
@@ -448,125 +489,152 @@
                 <tbody id="monthly-expence-table"></tbody>
               </table>
             </div>
-            <div class="tab-pane fade" id="add-expence-tabb" role="tabpanel">
+            <div
+              class="text-warning tab-pane fade"
+              id="add-expence-tabb"
+              role="tabpanel">
               <form
                 id="add-expence-form"
-                class="text-bg-dark pt-3 px-3 rounded-bottom d-flex flex-column"
+                class="text-warning bg-dark text-warning pt-3 px-3 rounded-bottom d-flex flex-column"
                 autocomplete="off">
-                <h1 class="py-3 text-center">Add expence</h1>
-                <div class="form-floating mb-3">
+                <h1 class="text-warning py-3 text-center">Add expence</h1>
+                <div class="text-warning form-floating mb-3">
                   <input
                     type="text"
-                    class="form-control text-bg-dark"
+                    class="text-warning form-control bg-dark text-warning"
                     name="expence-title"
                     id="add-expence-title"
                     placeholder="expence-title"
                     minlength="3"
                     required />
-                  <label for="add-expence-title" class="text-secondary"
+                  <label
+                    for="add-expence-title"
+                    class="text-warning text-secondary"
                     >Expence</label
                   >
                 </div>
-                <div class="input-group mb-3">
-                  <div class="input-group-text text-bg-dark">Date:</div>
+                <div class="text-warning input-group mb-3">
+                  <div
+                    class="text-warning input-group-text bg-dark text-warning">
+                    Date:
+                  </div>
                   <input
                     type="date"
-                    class="form-control text-bg-dark"
+                    class="text-warning form-control bg-dark text-warning"
                     name="date"
                     id="add-expence-date"
                     required />
                 </div>
-                <div class="input-group mb-3">
-                  <div class="input-group-text text-bg-dark">$</div>
+                <div class="text-warning input-group mb-3">
+                  <div
+                    class="text-warning input-group-text bg-dark text-warning">
+                    $
+                  </div>
                   <input
                     type="number"
-                    class="form-control text-bg-dark"
+                    class="text-warning form-control bg-dark text-warning"
                     name="price"
                     id="add-expence-price"
                     required />
                 </div>
 
-                <button type="submit" class="btn btn-secondary my-5">
+                <button
+                  type="submit"
+                  class="text-warning btn btn-secondary my-5">
                   Submit
                 </button>
               </form>
             </div>
           </div>
         </div>
-        <div class="tab-pane fade" id="revenues-tab" role="tabpanel">
+        <div
+          class="text-warning tab-pane fade"
+          id="revenues-tab"
+          role="tabpanel">
           <ul
-            class="nav nav-tabs text-bg-dark"
+            class="text-warning nav nav-tabs bg-dark text-warning"
             id="revenues-nav"
             role="tablist">
-            <li class="nav-item">
+            <li class="text-warning nav-item">
               <a
                 href="#daily-revenues-tab"
-                class="nav-link active"
+                class="text-warning nav-link active"
                 data-bs-toggle="tab"
                 aria-current="page"
                 onclick="showAllRevenues()"
                 >Daily</a
               >
             </li>
-            <li class="nav-item" role="presentation">
+            <li class="text-warning nav-item" role="presentation">
               <a
                 href="#monthly-revenues-tab"
-                class="nav-link"
+                class="text-warning nav-link"
                 data-bs-toggle="tab"
                 onclick="showAllRevenues()"
                 >Monthly</a
               >
             </li>
             <li
-              class="nav-item editor-toggle"
+              class="text-warning nav-item editor-toggle"
               id="add-revenue-btn"
               role="presentation">
-              <a href="#add-revenue-tabb" class="nav-link" data-bs-toggle="tab"
+              <a
+                href="#add-revenue-tabb"
+                class="text-warning nav-link"
+                data-bs-toggle="tab"
                 >Add Revenue</a
               >
             </li>
           </ul>
           <!-- Tab panes -->
-          <div class="tab-content" id="myTabContent">
+          <div class="text-warning tab-content" id="myTabContent">
             <div
-              class="tab-pane fade show active"
+              class="text-warning tab-pane fade show active"
               id="daily-revenues-tab"
               role="tabpanel">
               <div
-                class="d-flex justify-content-around align-items-center p-2 text-bg-dark">
-                <button id="revenue-prev" class="btn btn-secondary"><<</button>
+                class="text-warning d-flex justify-content-around align-items-center p-2 bg-dark text-warning">
+                <button
+                  id="revenue-prev"
+                  class="text-warning btn btn-secondary">
+                  <<
+                </button>
                 <span id="revenue-date"></span>
-                <button id="revenue-next" class="btn btn-secondary">>></button>
+                <button
+                  id="revenue-next"
+                  class="text-warning btn btn-secondary">
+                  >>
+                </button>
               </div>
-              <table class="w-100 p-1 text-bg-dark">
+              <table class="text-warning w-100 p-1 bg-dark text-warning">
                 <thead>
                   <tr>
                     <th
-                      class="text-center text-bg-secondary py-2 w-auto border border-3 border-dark rounded">
+                      class="text-warning text-center text-bg-secondary py-2 w-auto border border-3 border-dark rounded">
                       Sun
                     </th>
                     <th
-                      class="text-center text-bg-secondary py-2 w-auto border border-3 border-dark rounded">
+                      class="text-warning text-center text-bg-secondary py-2 w-auto border border-3 border-dark rounded">
                       Mon
                     </th>
                     <th
-                      class="text-center text-bg-secondary py-2 w-auto border border-3 border-dark rounded">
+                      class="text-warning text-center text-bg-secondary py-2 w-auto border border-3 border-dark rounded">
                       Tue
                     </th>
                     <th
-                      class="text-center text-bg-secondary py-2 w-auto border border-3 border-dark rounded">
+                      class="text-warning text-center text-bg-secondary py-2 w-auto border border-3 border-dark rounded">
                       Wed
                     </th>
                     <th
-                      class="text-center text-bg-secondary py-2 w-auto border border-3 border-dark rounded">
+                      class="text-warning text-center text-bg-secondary py-2 w-auto border border-3 border-dark rounded">
                       Thu
                     </th>
                     <th
-                      class="text-center text-bg-secondary py-2 w-auto border border-3 border-dark rounded">
+                      class="text-warning text-center text-bg-secondary py-2 w-auto border border-3 border-dark rounded">
                       Fri
                     </th>
                     <th
-                      class="text-center text-bg-secondary py-2 w-auto border border-3 border-dark rounded">
+                      class="text-warning text-center text-bg-secondary py-2 w-auto border border-3 border-dark rounded">
                       Sat
                     </th>
                   </tr>
@@ -575,23 +643,27 @@
               </table>
             </div>
             <div
-              class="tab-pane fade text-bg-dark"
+              class="text-warning tab-pane fade bg-dark text-warning"
               id="monthly-revenues-tab"
               role="tabpanel">
               <div
-                class="d-flex justify-content-around align-items-center p-2 text-bg-dark border-bottom border-secondary">
-                <button id="revenue-prev-monthly" class="btn btn-secondary">
+                class="text-warning d-flex justify-content-around align-items-center p-2 bg-dark text-warning border-bottom border-secondary">
+                <button
+                  id="revenue-prev-monthly"
+                  class="text-warning btn btn-secondary">
                   <<
                 </button>
                 <span id="revenue-date-monthly"></span>
-                <button id="revenue-next-monthly" class="btn btn-secondary">
+                <button
+                  id="revenue-next-monthly"
+                  class="text-warning btn btn-secondary">
                   >>
                 </button>
               </div>
-              <div class="w-50 mx-auto my-1">
+              <div class="text-warning w-50 mx-auto my-1">
                 <select
                   onchange="setRevMM()"
-                  class="form-select text-bg-secondary my-3"
+                  class="text-warning form-select text-bg-secondary my-3"
                   id="rev-monthly-thead">
                   <option value="0">January</option>
                   <option value="1">February</option>
@@ -607,16 +679,19 @@
                   <option value="11">December</option>
                 </select>
               </div>
-              <table class="table table-dark table-striped text-center">
+              <table
+                class="text-warning table table-dark table-striped text-center">
                 <thead>
                   <tr>
-                    <th scope="col" class="col text-start">Revenue</th>
-                    <th scope="col" class="col-1">Day</th>
-                    <th scope="col" class="col-2">$</th>
-                    <th scope="col" class="col-1 admin-toggle">
+                    <th scope="col" class="text-warning col text-start">
+                      Revenue
+                    </th>
+                    <th scope="col" class="text-warning col-1">Day</th>
+                    <th scope="col" class="text-warning col-2">$</th>
+                    <th scope="col" class="text-warning col-1 admin-toggle">
                       <i class="fas fa-edit"></i>
                     </th>
-                    <th scope="col" class="col-1 admin-toggle">
+                    <th scope="col" class="text-warning col-1 admin-toggle">
                       <i class="fas fa-trash"></i>
                     </th>
                   </tr>
@@ -624,67 +699,86 @@
                 <tbody id="monthly-revenue-table"></tbody>
               </table>
             </div>
-            <div class="tab-pane fade" id="add-revenue-tabb" role="tabpanel">
+            <div
+              class="text-warning tab-pane fade"
+              id="add-revenue-tabb"
+              role="tabpanel">
               <form
                 id="add-revenue-form"
-                class="text-bg-dark pt-3 px-3 rounded-bottom d-flex flex-column"
+                class="text-warning bg-dark text-warning pt-3 px-3 rounded-bottom d-flex flex-column"
                 autocomplete="off">
-                <h1 class="py-3 text-center">Add Revenue</h1>
-                <div class="form-floating mb-3">
+                <h1 class="text-warning py-3 text-center">Add Revenue</h1>
+                <div class="text-warning form-floating mb-3">
                   <input
                     type="text"
-                    class="form-control text-bg-dark"
+                    class="text-warning form-control bg-dark text-warning"
                     name="revenue-title"
                     id="add-revenue-title"
                     placeholder="revenue-title"
                     minlength="3"
                     required />
-                  <label for="add-revenue-title" class="text-secondary"
+                  <label
+                    for="add-revenue-title"
+                    class="text-warning text-secondary"
                     >Revenue</label
                   >
                 </div>
-                <div class="input-group mb-3">
-                  <div class="input-group-text text-bg-dark">Date:</div>
+                <div class="text-warning input-group mb-3">
+                  <div
+                    class="text-warning input-group-text bg-dark text-warning">
+                    Date:
+                  </div>
                   <input
                     type="date"
-                    class="form-control text-bg-dark"
+                    class="text-warning form-control bg-dark text-warning"
                     name="date"
                     id="add-revenue-date"
                     required />
                 </div>
-                <div class="input-group mb-3">
-                  <div class="input-group-text text-bg-dark">$</div>
+                <div class="text-warning input-group mb-3">
+                  <div
+                    class="text-warning input-group-text bg-dark text-warning">
+                    $
+                  </div>
                   <input
                     type="number"
-                    class="form-control text-bg-dark"
+                    class="text-warning form-control bg-dark text-warning"
                     name="price"
                     id="add-revenue-price"
                     required />
                 </div>
 
-                <button type="submit" class="btn btn-secondary my-5">
+                <button
+                  type="submit"
+                  class="text-warning btn btn-secondary my-5">
                   Submit
                 </button>
               </form>
             </div>
           </div>
         </div>
-        <div class="tab-pane fade" id="profit-tab" role="tabpanel">
-          <div class="container text-bg-dark pt-3">
-            <div class="row justify-content-center align-items-center g-2">
+        <div class="text-warning tab-pane fade" id="profit-tab" role="tabpanel">
+          <div class="text-warning container bg-dark text-warning pt-3">
+            <div
+              class="text-warning row justify-content-center align-items-center g-2">
               <div
-                class="d-flex justify-content-around align-items-center p-2 text-bg-dark border-bottom border-secondary">
-                <button id="profit-prev" class="btn btn-secondary"><<</button>
+                class="text-warning d-flex justify-content-around align-items-center p-2 bg-dark text-warning border-bottom border-secondary">
+                <button id="profit-prev" class="text-warning btn btn-secondary">
+                  <<
+                </button>
                 <span id="profit-date"></span>
-                <button id="profit-next" class="btn btn-secondary">>></button>
+                <button id="profit-next" class="text-warning btn btn-secondary">
+                  >>
+                </button>
               </div>
             </div>
-            <div class="table-responsive">
-              <table class="table table-bordered text-bg-dark">
+            <div class="text-warning table-responsive">
+              <table
+                class="text-warning table table-bordered bg-dark text-warning">
                 <thead>
                   <tr>
-                    <th class="col-8">Yearly</th>
-                    <th class="col-4">$</th>
+                    <th class="text-warning col-8">Yearly</th>
+                    <th class="text-warning col-4">$</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -704,11 +798,12 @@
               </table>
             </div>
           </div>
-          <div class="container text-bg-dark mt-4">
-            <div class="row justify-content-center align-items-center g-2">
-              <div class="w-50 mx-auto my-1">
+          <div class="text-warning container bg-dark text-warning mt-4">
+            <div
+              class="text-warning row justify-content-center align-items-center g-2">
+              <div class="text-warning w-50 mx-auto my-1">
                 <select
-                  class="form-select text-bg-secondary"
+                  class="text-warning form-select text-bg-secondary"
                   onchange="setProfM()"
                   id="profit-select">
                   <option value="0">January</option>
@@ -726,12 +821,13 @@
                 </select>
               </div>
             </div>
-            <div class="table-responsive">
-              <table class="table table-bordered text-bg-dark">
+            <div class="text-warning table-responsive">
+              <table
+                class="text-warning table table-bordered bg-dark text-warning">
                 <thead>
                   <tr>
-                    <th class="col-8">Monthly</th>
-                    <th class="col-4">$</th>
+                    <th class="text-warning col-8">Monthly</th>
+                    <th class="text-warning col-4">$</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -757,7 +853,7 @@
 
     <!-- / User Modal Body -->
     <div
-      class="modal fade"
+      class="text-warning modal fade"
       id="edit-user-modal"
       tabindex="-1"
       data-bs-backdrop="static"
@@ -766,82 +862,92 @@
       aria-labelledby="edit-user-modal-title"
       aria-hidden="true">
       <div
-        class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-sm"
+        class="text-warning modal-dialog modal-dialog-scrollable modal-dialog-centered modal-sm"
         role="document">
-        <div class="modal-content text-bg-dark">
-          <div class="modal-header">
-            <h5 class="modal-title text-center" id="edit-user-modal-title">
+        <div class="text-warning modal-content bg-dark text-warning">
+          <div class="text-warning modal-header">
+            <h5
+              class="text-warning modal-title text-center"
+              id="edit-user-modal-title">
               edit User
             </h5>
             <button
               type="button"
-              class="btn-close"
+              class="text-warning btn-close"
               data-bs-dismiss="modal"
               aria-label="Close"
               onclick="clearUserModal()"></button>
           </div>
-          <div class="modal-body">
+          <div class="text-warning modal-body">
             <form
               id="edit-user-form"
-              class="text-bg-secondary pt-3 px-3 rounded-4 d-flex flex-column"
+              class="text-warning text-bg-secondary pt-3 px-3 rounded-4 d-flex flex-column"
               autocomplete="off">
-              <h1 class="py-3 text-center">
+              <h1 class="text-warning py-3 text-center">
                 <span id="edit-user-usename"></span>
               </h1>
-              <div class="form-check mx-auto">
+              <div class="text-warning form-check mx-auto">
                 <input
-                  class="form-check-input"
+                  class="text-warning form-check-input"
                   type="checkbox"
                   value="editor"
                   id="password-edituser-checkbox" />
                 <label
-                  class="form-check-label"
+                  class="text-warning form-check-label"
                   for="password-edituser-checkbox">
                   Change password
                 </label>
               </div>
-              <div class="form-floating mb-3">
+              <div class="text-warning form-floating mb-3">
                 <input
                   type="password"
-                  class="form-control text-bg-dark"
+                  class="text-warning form-control bg-dark text-warning"
                   name="password"
                   id="password-edituser-input"
                   placeholder="username"
                   minlength="5"
                   required
                   disabled />
-                <label for="password-edituser-input" class="text-secondary"
+                <label
+                  for="password-edituser-input"
+                  class="text-warning text-secondary"
                   >Password</label
                 >
               </div>
-              <div class="form-check mx-auto">
+              <div class="text-warning form-check mx-auto">
                 <input
-                  class="form-check-input"
+                  class="text-warning form-check-input"
                   type="checkbox"
                   value="admin"
                   id="admin-edituser-checkbox" />
-                <label class="form-check-label" for="admin-edituser-checkbox">
+                <label
+                  class="text-warning form-check-label"
+                  for="admin-edituser-checkbox">
                   Admin
                 </label>
               </div>
-              <div class="form-check mx-auto">
+              <div class="text-warning form-check mx-auto">
                 <input
-                  class="form-check-input"
+                  class="text-warning form-check-input"
                   type="checkbox"
                   value="editor"
                   id="editor-edituser-checkbox" />
-                <label class="form-check-label" for="editor-edituser-checkbox">
+                <label
+                  class="text-warning form-check-label"
+                  for="editor-edituser-checkbox">
                   Editor
                 </label>
               </div>
-              <button type="submit" class="btn btn-dark mb-3">Save</button>
+              <button type="submit" class="text-warning btn btn-dark mb-3">
+                Save
+              </button>
             </form>
           </div>
-          <div class="modal-footer">
+          <div class="text-warning modal-footer">
             <button
               id="user-modal-btn"
               type="button"
-              class="btn btn-secondary"
+              class="text-warning btn btn-secondary"
               data-bs-dismiss="modal"
               onclick="clearUserModal()">
               Close
@@ -853,7 +959,7 @@
 
     <!-- / edit expence Modal Body -->
     <div
-      class="modal fade"
+      class="text-warning modal fade"
       id="edit-expence-modal"
       tabindex="-1"
       data-bs-backdrop="static"
@@ -862,67 +968,75 @@
       aria-labelledby="edit-expence-modal-title"
       aria-hidden="true">
       <div
-        class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-sm"
+        class="text-warning modal-dialog modal-dialog-scrollable modal-dialog-centered modal-sm"
         role="document">
-        <div class="modal-content text-bg-dark">
-          <div class="modal-header">
-            <h5 class="modal-title text-center">Expence</h5>
+        <div class="text-warning modal-content bg-dark text-warning">
+          <div class="text-warning modal-header">
+            <h5 class="text-warning modal-title text-center">Expence</h5>
             <button
               type="button"
-              class="btn-close"
+              class="text-warning btn-close"
               data-bs-dismiss="modal"
               aria-label="Close"
               onclick="clearExpenceModal()"></button>
           </div>
-          <div class="modal-body">
+          <div class="text-warning modal-body">
             <form
               id="edit-expence-form"
-              class="text-bg-secondary pt-3 px-3 rounded-4 d-flex flex-column"
+              class="text-warning text-bg-secondary pt-3 px-3 rounded-4 d-flex flex-column"
               autocomplete="off">
-              <h1 class="py-3 text-center">
+              <h1 class="text-warning py-3 text-center">
                 <span id="edit-expence-alert"></span>
               </h1>
-              <div class="form-floating mb-3">
+              <div class="text-warning form-floating mb-3">
                 <input
                   type="text"
-                  class="form-control text-bg-dark admin-input"
+                  class="text-warning form-control bg-dark text-warning admin-input"
                   name="expence-title"
                   id="edit-expence-title"
                   placeholder="expence-title"
                   minlength="3"
                   required />
-                <label for="edit-expence-title" class="text-secondary"
+                <label
+                  for="edit-expence-title"
+                  class="text-warning text-secondary"
                   >Expence</label
                 >
               </div>
-              <div class="input-group mb-3">
-                <div class="input-group-text text-bg-dark">Date:</div>
+              <div class="text-warning input-group mb-3">
+                <div class="text-warning input-group-text bg-dark text-warning">
+                  Date:
+                </div>
                 <input
                   type="date"
-                  class="form-control text-bg-dark admin-input"
+                  class="text-warning form-control bg-dark text-warning admin-input"
                   name="date"
                   id="edit-expence-date"
                   required />
               </div>
-              <div class="input-group mb-3">
-                <div class="input-group-text text-bg-dark">$</div>
+              <div class="text-warning input-group mb-3">
+                <div class="text-warning input-group-text bg-dark text-warning">
+                  $
+                </div>
                 <input
                   type="number"
-                  class="form-control text-bg-dark admin-input"
+                  class="text-warning form-control bg-dark text-warning admin-input"
                   name="price"
                   id="edit-expence-price"
                   required />
               </div>
-              <button type="submit" class="btn btn-dark mb-3 admin-toggle">
+              <button
+                type="submit"
+                class="text-warning btn btn-dark mb-3 admin-toggle">
                 Save
               </button>
             </form>
           </div>
-          <div class="modal-footer">
+          <div class="text-warning modal-footer">
             <button
               id="expence-modal-btn"
               type="button"
-              class="btn btn-secondary"
+              class="text-warning btn btn-secondary"
               data-bs-dismiss="modal"
               onclick="clearExpenceModal()">
               Close
@@ -934,7 +1048,7 @@
 
     <!-- /daily expence modal -->
     <div
-      class="modal fade"
+      class="text-warning modal fade"
       id="show-daily-expences"
       tabindex="-1"
       data-bs-backdrop="static"
@@ -943,29 +1057,34 @@
       aria-labelledby="show-daily-expences-title"
       aria-hidden="true">
       <div
-        class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-sm"
+        class="text-warning modal-dialog modal-dialog-scrollable modal-dialog-centered modal-sm"
         role="document">
-        <div class="modal-content text-bg-dark">
-          <div class="modal-header">
-            <h5 class="modal-title text-center" id="show-daily-expences-title">
+        <div class="text-warning modal-content bg-dark text-warning">
+          <div class="text-warning modal-header">
+            <h5
+              class="text-warning modal-title text-center"
+              id="show-daily-expences-title">
               Expence
             </h5>
             <button
               type="button"
-              class="btn-close"
+              class="text-warning btn-close"
               data-bs-dismiss="modal"
               aria-label="Close"></button>
           </div>
-          <div class="modal-body">
-            <table class="table table-dark table-striped text-center">
+          <div class="text-warning modal-body">
+            <table
+              class="text-warning table table-dark table-striped text-center">
               <thead>
                 <tr>
-                  <th scope="col" class="col text-start">Expence</th>
-                  <th scope="col" class="col-1">$</th>
-                  <th scope="col" class="col-1 admin-toggle">
+                  <th scope="col" class="text-warning col text-start">
+                    Expence
+                  </th>
+                  <th scope="col" class="text-warning col-1">$</th>
+                  <th scope="col" class="text-warning col-1 admin-toggle">
                     <i class="fas fa-edit"></i>
                   </th>
-                  <th scope="col" class="col-1 admin-toggle">
+                  <th scope="col" class="text-warning col-1 admin-toggle">
                     <i class="fas fa-trash"></i>
                   </th>
                 </tr>
@@ -973,11 +1092,11 @@
               <tbody id="daily-expence-modal"></tbody>
             </table>
           </div>
-          <div class="modal-footer">
+          <div class="text-warning modal-footer">
             <button
               id="daily-expence-modal-btn"
               type="button"
-              class="btn btn-secondary"
+              class="text-warning btn btn-secondary"
               data-bs-dismiss="modal">
               Close
             </button>
@@ -988,7 +1107,7 @@
 
     <!-- / edit revenue Modal Body -->
     <div
-      class="modal fade"
+      class="text-warning modal fade"
       id="edit-revenue-modal"
       tabindex="-1"
       data-bs-backdrop="static"
@@ -997,67 +1116,75 @@
       aria-labelledby="edit-revenue-modal-title"
       aria-hidden="true">
       <div
-        class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-sm"
+        class="text-warning modal-dialog modal-dialog-scrollable modal-dialog-centered modal-sm"
         role="document">
-        <div class="modal-content text-bg-dark">
-          <div class="modal-header">
-            <h5 class="modal-title text-center">Revenue</h5>
+        <div class="text-warning modal-content bg-dark text-warning">
+          <div class="text-warning modal-header">
+            <h5 class="text-warning modal-title text-center">Revenue</h5>
             <button
               type="button"
-              class="btn-close"
+              class="text-warning btn-close"
               data-bs-dismiss="modal"
               aria-label="Close"
               onclick="clearRevenueModal()"></button>
           </div>
-          <div class="modal-body">
+          <div class="text-warning modal-body">
             <form
               id="edit-revenue-form"
-              class="text-bg-secondary pt-3 px-3 rounded-4 d-flex flex-column"
+              class="text-warning text-bg-secondary pt-3 px-3 rounded-4 d-flex flex-column"
               autocomplete="off">
-              <h1 class="py-3 text-center">
+              <h1 class="text-warning py-3 text-center">
                 <span id="edit-revenue-alert"></span>
               </h1>
-              <div class="form-floating mb-3">
+              <div class="text-warning form-floating mb-3">
                 <input
                   type="text"
-                  class="form-control text-bg-dark admin-input"
+                  class="text-warning form-control bg-dark text-warning admin-input"
                   name="revenue-title"
                   id="edit-revenue-title"
                   placeholder="revenue-title"
                   minlength="3"
                   required />
-                <label for="edit-revenue-title" class="text-secondary"
+                <label
+                  for="edit-revenue-title"
+                  class="text-warning text-secondary"
                   >Revenue</label
                 >
               </div>
-              <div class="input-group mb-3">
-                <div class="input-group-text text-bg-dark">Date:</div>
+              <div class="text-warning input-group mb-3">
+                <div class="text-warning input-group-text bg-dark text-warning">
+                  Date:
+                </div>
                 <input
                   type="date"
-                  class="form-control text-bg-dark admin-input"
+                  class="text-warning form-control bg-dark text-warning admin-input"
                   name="date"
                   id="edit-revenue-date"
                   required />
               </div>
-              <div class="input-group mb-3">
-                <div class="input-group-text text-bg-dark">$</div>
+              <div class="text-warning input-group mb-3">
+                <div class="text-warning input-group-text bg-dark text-warning">
+                  $
+                </div>
                 <input
                   type="number"
-                  class="form-control text-bg-dark admin-input"
+                  class="text-warning form-control bg-dark text-warning admin-input"
                   name="price"
                   id="edit-revenue-price"
                   required />
               </div>
-              <button type="submit" class="btn btn-dark mb-3 admin-toggle">
+              <button
+                type="submit"
+                class="text-warning btn btn-dark mb-3 admin-toggle">
                 Save
               </button>
             </form>
           </div>
-          <div class="modal-footer">
+          <div class="text-warning modal-footer">
             <button
               id="revenue-modal-btn"
               type="button"
-              class="btn btn-secondary"
+              class="text-warning btn btn-secondary"
               data-bs-dismiss="modal"
               onclick="clearRevenueModal()">
               Close
@@ -1069,7 +1196,7 @@
 
     <!-- /daily revenue modal -->
     <div
-      class="modal fade"
+      class="text-warning modal fade"
       id="show-daily-revenues"
       tabindex="-1"
       data-bs-backdrop="static"
@@ -1078,29 +1205,34 @@
       aria-labelledby="show-daily-revenues-title"
       aria-hidden="true">
       <div
-        class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-sm"
+        class="text-warning modal-dialog modal-dialog-scrollable modal-dialog-centered modal-sm"
         role="document">
-        <div class="modal-content text-bg-dark">
-          <div class="modal-header">
-            <h5 class="modal-title text-center" id="show-daily-revenues-title">
+        <div class="text-warning modal-content bg-dark text-warning">
+          <div class="text-warning modal-header">
+            <h5
+              class="text-warning modal-title text-center"
+              id="show-daily-revenues-title">
               Revenue
             </h5>
             <button
               type="button"
-              class="btn-close"
+              class="text-warning btn-close"
               data-bs-dismiss="modal"
               aria-label="Close"></button>
           </div>
-          <div class="modal-body">
-            <table class="table table-dark table-striped text-center">
+          <div class="text-warning modal-body">
+            <table
+              class="text-warning table table-dark table-striped text-center">
               <thead>
                 <tr>
-                  <th scope="col" class="col text-start">Revenue</th>
-                  <th scope="col" class="col-1">$</th>
-                  <th scope="col" class="col-1 admin-toggle">
+                  <th scope="col" class="text-warning col text-start">
+                    Revenue
+                  </th>
+                  <th scope="col" class="text-warning col-1">$</th>
+                  <th scope="col" class="text-warning col-1 admin-toggle">
                     <i class="fas fa-edit"></i>
                   </th>
-                  <th scope="col" class="col-1 admin-toggle">
+                  <th scope="col" class="text-warning col-1 admin-toggle">
                     <i class="fas fa-trash"></i>
                   </th>
                 </tr>
@@ -1108,11 +1240,11 @@
               <tbody id="daily-revenue-modal"></tbody>
             </table>
           </div>
-          <div class="modal-footer">
+          <div class="text-warning modal-footer">
             <button
               id="daily-revenue-modal-btn"
               type="button"
-              class="btn btn-secondary"
+              class="text-warning btn btn-secondary"
               data-bs-dismiss="modal">
               Close
             </button>
@@ -1123,7 +1255,7 @@
 
     <!-- / edit reservations Modal Body -->
     <div
-      class="modal fade"
+      class="text-warning modal fade"
       id="edit-reservation-modal"
       tabindex="-1"
       data-bs-backdrop="static"
@@ -1132,26 +1264,26 @@
       aria-labelledby="edit-reservation-modal-title"
       aria-hidden="true">
       <div
-        class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-sm"
+        class="text-warning modal-dialog modal-dialog-scrollable modal-dialog-centered modal-sm"
         role="document">
-        <div class="modal-content text-bg-dark">
-          <div class="modal-header">
+        <div class="text-warning modal-content bg-dark text-warning">
+          <div class="text-warning modal-header">
             <h5
-              class="modal-title text-center"
+              class="text-warning modal-title text-center"
               id="edit-reservation-modal-title">
               Reservation
             </h5>
             <button
               type="button"
-              class="btn-close"
+              class="text-warning btn-close"
               data-bs-dismiss="modal"
               aria-label="Close"
               onclick="clearReservationModal()"></button>
           </div>
-          <div class="modal-body">
+          <div class="text-warning modal-body">
             <form
               id="edit-reservation-form"
-              class="text-bg-secondary pt-3 px-3 rounded-4 d-flex flex-column"
+              class="text-warning text-bg-secondary pt-3 px-3 rounded-4 d-flex flex-column"
               autocomplete="off">
               <p id="edit-reservation-alert"></p>
               <p>Bungalow : <span id="edit-reservation-number"></span></p>
@@ -1159,60 +1291,70 @@
                 Edited By :
                 <span id="edit-reservation-User"></span>
               </p>
-              <div class="form-floating mb-3 editor-toggle">
+              <div class="text-warning form-floating mb-3 editor-toggle">
                 <input
                   type="text"
-                  class="form-control text-bg-dark editor-input"
+                  class="text-warning form-control bg-dark text-warning editor-input"
                   name="customer-name"
                   id="edit-reservation-name"
                   placeholder="customer-info"
                   minlength="5"
                   maxlength="15"
                   required />
-                <label for="edit-reservation-name" class="text-secondary"
+                <label
+                  for="edit-reservation-name"
+                  class="text-warning text-secondary"
                   >Customer Name</label
                 >
               </div>
               <div
                 id="edit-reservation-contact-div"
-                class="form-floating mb-3 editor-toggle">
+                class="text-warning form-floating mb-3 editor-toggle">
                 <input
                   type="text"
-                  class="form-control text-bg-dark editor-input"
+                  class="text-warning form-control bg-dark text-warning editor-input"
                   name="customer-name"
                   id="edit-reservation-contact"
                   placeholder="customer-info"
                   minlength="5"
                   required />
-                <label for="edit-reservation-contact" class="text-secondary"
+                <label
+                  for="edit-reservation-contact"
+                  class="text-warning text-secondary"
                   >Customer Contact Info</label
                 >
               </div>
-              <div class="input-group mb-3">
-                <div class="input-group-text text-bg-dark">Date:</div>
+              <div class="text-warning input-group mb-3">
+                <div class="text-warning input-group-text bg-dark text-warning">
+                  Date:
+                </div>
                 <input
                   type="date"
-                  class="form-control text-bg-dark"
+                  class="text-warning form-control bg-dark text-warning"
                   name="date"
                   id="edit-reservation-date"
                   required
                   disabled />
               </div>
-              <div class="input-group mb-3">
-                <div class="input-group-text text-bg-dark">$</div>
+              <div class="text-warning input-group mb-3">
+                <div class="text-warning input-group-text bg-dark text-warning">
+                  $
+                </div>
                 <input
                   type="number"
-                  class="form-control text-bg-dark editor-input"
+                  class="text-warning form-control bg-dark text-warning editor-input"
                   name="price"
                   id="edit-reservation-price"
                   required />
               </div>
-              <div class="mb-3">
-                <label for="edit-reservation-notes" class="form-label"
+              <div class="text-warning mb-3">
+                <label
+                  for="edit-reservation-notes"
+                  class="text-warning form-label"
                   >notes</label
                 >
                 <textarea
-                  class="form-control text-bg-dark editor-input"
+                  class="text-warning form-control bg-dark text-warning editor-input"
                   name="notes"
                   id="edit-reservation-notes"
                   rows="1"></textarea>
@@ -1220,7 +1362,7 @@
               <button
                 id="edit-reservation-button"
                 type="submit"
-                class="btn btn-dark mb-3 editor-toggle">
+                class="text-warning btn btn-dark mb-3 editor-toggle">
                 Edit
               </button>
             </form>
@@ -1235,7 +1377,7 @@
             <button
               id="reservation-modal-btn"
               type="button"
-              class="btn btn-secondary"
+              class="text-warning btn btn-secondary"
               data-bs-dismiss="modal"
               onclick="clearReservationModal()">
               Close
@@ -1247,7 +1389,7 @@
 
     <!-- / add reservations Modal Body -->
     <div
-      class="modal fade"
+      class="text-warning modal fade"
       id="add-reservation-modal"
       tabindex="-1"
       data-bs-backdrop="static"
@@ -1256,93 +1398,105 @@
       aria-labelledby="add-reservation-modal-title"
       aria-hidden="true">
       <div
-        class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-sm"
+        class="text-warning modal-dialog modal-dialog-scrollable modal-dialog-centered modal-sm"
         role="document">
-        <div class="modal-content text-bg-dark">
-          <div class="modal-header">
+        <div class="text-warning modal-content bg-dark text-warning">
+          <div class="text-warning modal-header">
             <h5
-              class="modal-title text-center"
+              class="text-warning modal-title text-center"
               id="add-reservation-modal-title">
               Add Reservation
             </h5>
             <button
               type="button"
-              class="btn-close"
+              class="text-warning btn-close"
               data-bs-dismiss="modal"
               aria-label="Close"
               onclick="clearAddReservationModal()"></button>
           </div>
-          <div class="modal-body">
+          <div class="text-warning modal-body">
             <form
               id="add-reservation-form"
-              class="text-bg-secondary pt-3 px-3 rounded-4 d-flex flex-column"
+              class="text-warning text-bg-secondary pt-3 px-3 rounded-4 d-flex flex-column"
               autocomplete="off">
               <p id="add-reservation-alert"></p>
               <p>Bungalow : <span id="add-reservation-number"></span></p>
-              <div class="form-floating mb-3">
+              <div class="text-warning form-floating mb-3">
                 <input
                   type="text"
-                  class="form-control text-bg-dark"
+                  class="text-warning form-control bg-dark text-warning"
                   name="customer-name"
                   id="add-reservation-name"
                   placeholder="customer-info"
                   minlength="5"
                   maxlength="15"
                   required />
-                <label for="add-reservation-name" class="text-secondary"
+                <label
+                  for="add-reservation-name"
+                  class="text-warning text-secondary"
                   >Customer Name</label
                 >
               </div>
-              <div class="form-floating mb-3">
+              <div class="text-warning form-floating mb-3">
                 <input
                   type="text"
-                  class="form-control text-bg-dark"
+                  class="text-warning form-control bg-dark text-warning"
                   name="customer-name"
                   id="add-reservation-contact"
                   placeholder="customer-info"
                   minlength="5"
                   required />
-                <label for="add-reservation-contact" class="text-secondary"
+                <label
+                  for="add-reservation-contact"
+                  class="text-warning text-secondary"
                   >Customer Contact Info</label
                 >
               </div>
-              <div class="input-group mb-3">
-                <div class="input-group-text text-bg-dark">Date:</div>
+              <div class="text-warning input-group mb-3">
+                <div class="text-warning input-group-text bg-dark text-warning">
+                  Date:
+                </div>
                 <input
                   type="date"
-                  class="form-control text-bg-dark"
+                  class="text-warning form-control bg-dark text-warning"
                   name="date"
                   id="add-reservation-date"
                   required
                   disabled />
               </div>
-              <div class="input-group mb-3">
-                <div class="input-group-text text-bg-dark">$</div>
+              <div class="text-warning input-group mb-3">
+                <div class="text-warning input-group-text bg-dark text-warning">
+                  $
+                </div>
                 <input
                   type="number"
-                  class="form-control text-bg-dark"
+                  class="text-warning form-control bg-dark text-warning"
                   name="price"
                   id="add-reservation-price"
                   required />
               </div>
-              <div class="mb-3">
-                <label for="add-reservation-notes" class="form-label"
+              <div class="text-warning mb-3">
+                <label
+                  for="add-reservation-notes"
+                  class="text-warning form-label"
                   >notes</label
                 >
                 <textarea
-                  class="form-control text-bg-dark"
+                  class="text-warning form-control bg-dark text-warning"
                   name="notes"
                   id="add-reservation-notes"
                   rows="1"></textarea>
               </div>
-              <button type="submit" class="btn btn-dark mb-3">Save</button>
+              <button type="submit" class="text-warning btn btn-dark mb-3">
+                Save
+              </button>
             </form>
           </div>
-          <div class="modal-footer">
+          <div class="text-warning modal-footer">
             <button
               id="add-reservation-modal-btn"
               type="button"
-              class="btn btn-secondary"
+              class="text-warning btn btn-secondary"
               data-bs-dismiss="modal"
               onclick="clearAddReservationModal()">
               Close
@@ -1353,22 +1507,29 @@
     </div>
 
     <!-- / custom responce -->
-    <div id="custom-responce" class="text-bg-secondary text-center">
+    <div
+      id="custom-responce"
+      class="text-warning text-bg-secondary text-center">
       <div
-        class="d-flex flex-column justify-content-center"
+        class="text-warning d-flex flex-column justify-content-center"
         style="width: 100vw; height: 100vh">
-        <h2 class="text-danger" id="custom-responce-msg"></h2>
-        <button class="btn btn-dark mx-auto" onclick="closeCustomResponce()">
+        <h2 class="text-warning text-danger" id="custom-responce-msg"></h2>
+        <button
+          class="text-warning btn btn-dark mx-auto"
+          onclick="closeCustomResponce()">
           Close
         </button>
       </div>
     </div>
 
-    <footer class="text-bg-dark">
-      <div class="container">
-        <div class="row">
-          <div class="col-4" id="copy"></div>
-          <div class="col-8 text-end" id="credit" class="d-flex">
+    <footer class="text-warning bg-dark text-warning">
+      <div class="text-warning container">
+        <div class="text-warning row">
+          <div class="text-warning col-4" id="copy"></div>
+          <div
+            class="text-warning col-8 text-end"
+            id="credit"
+            class="text-warning d-flex">
             Developped by
             <a
               href="https://www.linkedin.com/in/karam-b-karam"

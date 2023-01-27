@@ -237,16 +237,16 @@ function showAllUsers() {
           role = "User";
         }
         const addContent = ` <tr>
-                              <td class="text-start">${user.username}</td>
-                              <td>${role}</td>
-                              <td class="text-center">
-                                <button class="btn btn-sm btn-outline-info" data-bs-toggle="modal" data-bs-target="#edit-user-modal" onclick="showUser('${user.username}')">
-                                  <i class="fas fa-edit"></i>
+                              <td class="text-warning text-start">${user.username}</td>
+                              <td class="text-warning">${role}</td>
+                              <td class=" text-center">
+                                <button class=" btn btn-sm btn-outline-info" data-bs-toggle="modal" data-bs-target="#edit-user-modal" onclick="showUser('${user.username}')">
+                                  <i class=" fas fa-edit"></i>
                                 </button>
                               </td>
-                              <td class="text-center">
-                                <button class="btn btn-sm btn-outline-danger" onclick="deleteUser('${user.username}')">
-                                  <i class="fas fa-trash"></i>
+                              <td class=" text-center">
+                                <button class=" btn btn-sm btn-outline-danger" onclick="deleteUser('${user.username}')">
+                                  <i class=" fas fa-trash"></i>
                                 </button>
                               </td>
                             </tr>`;
@@ -844,13 +844,13 @@ function showCalendar(month, year, target, bnumber) {
           let cell = document.createElement("td");
           let newdate = formatDate(day, year, month);
           if (USER_ROLES.includes(2001) || USER_ROLES.includes(5150)) {
-            cell.innerHTML = `<button class="btn btn-outline-secondary w-100" data-bs-toggle="modal" data-bs-target="#add-reservation-modal" onclick="setAddReservationData('${newdate}','${bnumber}')">${day}</button>`;
+            cell.innerHTML = `<button class="text-warning btn btn-outline-secondary w-100" data-bs-toggle="modal" data-bs-target="#add-reservation-modal" onclick="setAddReservationData('${newdate}','${bnumber}')">${day}</button>`;
           } else {
-            cell.innerHTML = `<button class="btn btn-outline-secondary w-100" disabled>${day}</button>`;
+            cell.innerHTML = `<button class="text-warning btn btn-outline-secondary w-100" disabled>${day}</button>`;
           }
           RESERVATIONS.forEach((element) => {
             if (element.bookedDate == newdate && element.number == bnumber) {
-              cell.innerHTML = `<button data-bs-toggle="modal" data-bs-target="#edit-reservation-modal" onclick="showReservation('${bnumber}','${newdate}')" class="btn btn-success w-100">${day}</button>`;
+              cell.innerHTML = `<button data-bs-toggle="modal" data-bs-target="#edit-reservation-modal" onclick="showReservation('${bnumber}','${newdate}')" class="text-warning btn btn-success w-100">${day}</button>`;
             }
           });
 
@@ -904,11 +904,11 @@ function showExpencesCalendar(month, year, target) {
         if (day <= daysInMonth) {
           let cell = document.createElement("td");
           let newdate = formatDate(day, year, month);
-          cell.innerHTML = `<button class="btn btn-outline-secondary w-100" disabled>${day}</button>`;
+          cell.innerHTML = `<button class="text-warning btn btn-outline-secondary w-100" disabled>${day}</button>`;
           EXPENCES.forEach((element) => {
             if (element.date == newdate) {
               cell.innerHTML = `<button data-bs-toggle="modal"
-              data-bs-target="#show-daily-expences" onclick="showDailyExpence('${newdate}')" class="btn btn-success w-100">${day}</button>`;
+              data-bs-target="#show-daily-expences" onclick="showDailyExpence('${newdate}')" class="text-warning btn btn-success w-100">${day}</button>`;
             }
           });
 
@@ -926,15 +926,15 @@ function showDailyExpence(date) {
   EXPENCES.forEach((elm) => {
     if (elm.date == date) {
       modal.innerHTML += `<tr>
-      <td class="text-start">${elm.title}</td><td class="text-center">${elm.price}</td>
-      <td class="text-center admin-toggle ">
-      <button class="btn btn-sm btn-outline-info" data-bs-toggle="modal" data-bs-target="#edit-expence-modal" onclick="showExpence('${elm._id}')">
-        <i class="fas fa-edit"></i>
+      <td class="text-warning text-start">${elm.title}</td><td class="text-warning text-center">${elm.price}</td>
+      <td class=" text-center admin-toggle ">
+      <button class=" btn btn-sm btn-outline-info" data-bs-toggle="modal" data-bs-target="#edit-expence-modal" onclick="showExpence('${elm._id}')">
+        <i class=" fas fa-edit"></i>
       </button>
     </td>
-    <td class="text-center admin-toggle">
-      <button class="btn btn-sm btn-outline-danger" onclick="deleteExpence('${elm._id}')">
-        <i class="fas fa-trash"></i>
+    <td class=" text-center admin-toggle">
+      <button class=" btn btn-sm btn-outline-danger" onclick="deleteExpence('${elm._id}')">
+        <i class=" fas fa-trash"></i>
       </button>
     </td>
     </tr>`;
@@ -981,20 +981,20 @@ function drawMonthlySelectEXP() {
     }
   });
   if (filteredExpences.length == 0) {
-    expMonthlyTable.innerHTML = `<tr><td colspan="5" class="text-start text-center" style="color:red">No Expences Found</td></tr>`;
+    expMonthlyTable.innerHTML = `<tr><td colspan="5" class="text-warning text-start text-center" style="color:red">No Expences Found</td></tr>`;
   } else {
     filteredExpences = sortByDate(filteredExpences);
     filteredExpences.forEach((elm) => {
       expMonthlyTable.innerHTML += `<tr>
-      <td class="text-start">${elm.title}</td><td class="text-center">${elm.date[8]}${elm.date[9]}</td><td class="text-center">${elm.price} $</td>
-      <td class="text-center admin-toggle">
-      <button class="btn btn-sm btn-outline-info " data-bs-toggle="modal" data-bs-target="#edit-expence-modal" onclick="showExpence('${elm._id}')">
-        <i class="fas fa-edit"></i>
+      <td class="text-warning text-start">${elm.title}</td><td class="text-warning text-center">${elm.date[8]}${elm.date[9]}</td><td class="text-warning text-center">${elm.price} $</td>
+      <td class=" text-center admin-toggle">
+      <button class=" btn btn-sm btn-outline-info " data-bs-toggle="modal" data-bs-target="#edit-expence-modal" onclick="showExpence('${elm._id}')">
+        <i class=" fas fa-edit"></i>
       </button>
     </td>
-    <td class="text-center admin-toggle">
-      <button class="btn btn-sm btn-outline-danger" onclick="deleteExpence('${elm._id}')">
-        <i class="fas fa-trash"></i>
+    <td class=" text-center admin-toggle">
+      <button class=" btn btn-sm btn-outline-danger" onclick="deleteExpence('${elm._id}')">
+        <i class=" fas fa-trash"></i>
       </button>
     </td>
     </tr>`;
@@ -1224,11 +1224,11 @@ function showRevenuesCalendar(month, year, target) {
         if (day <= daysInMonth) {
           let cell = document.createElement("td");
           let newdate = formatDate(day, year, month);
-          cell.innerHTML = `<button class="btn btn-outline-secondary w-100" disabled>${day}</button>`;
+          cell.innerHTML = `<button class="text-warning btn btn-outline-secondary w-100" disabled>${day}</button>`;
           REVENUES.forEach((element) => {
             if (element.date == newdate) {
               cell.innerHTML = `<button data-bs-toggle="modal"
-              data-bs-target="#show-daily-revenues" onclick="showDailyRevenue('${newdate}')" class="btn btn-success w-100">${day}</button>`;
+              data-bs-target="#show-daily-revenues" onclick="showDailyRevenue('${newdate}')" class="text-warning btn btn-success w-100">${day}</button>`;
             }
           });
 
@@ -1246,15 +1246,15 @@ function showDailyRevenue(date) {
   REVENUES.forEach((elm) => {
     if (elm.date == date) {
       modal.innerHTML += `<tr>
-      <td class="text-start">${elm.title}</td><td class="text-center">${elm.price}</td>
-      <td class="text-center admin-toggle ">
-      <button class="btn btn-sm btn-outline-info" data-bs-toggle="modal" data-bs-target="#edit-revenue-modal" onclick="showRevenue('${elm._id}')">
-        <i class="fas fa-edit"></i>
+      <td class="text-warning text-start">${elm.title}</td><td class="text-warning text-center">${elm.price}</td>
+      <td class=" text-center admin-toggle ">
+      <button class=" btn btn-sm btn-outline-info" data-bs-toggle="modal" data-bs-target="#edit-revenue-modal" onclick="showRevenue('${elm._id}')">
+        <i class=" fas fa-edit"></i>
       </button>
     </td>
-    <td class="text-center admin-toggle">
-      <button class="btn btn-sm btn-outline-danger" onclick="deleteRevenue('${elm._id}')">
-        <i class="fas fa-trash"></i>
+    <td class=" text-center admin-toggle">
+      <button class=" btn btn-sm btn-outline-danger" onclick="deleteRevenue('${elm._id}')">
+        <i class=" fas fa-trash"></i>
       </button>
     </td>
     </tr>`;
@@ -1301,20 +1301,20 @@ function drawMonthlySelectrev() {
     }
   });
   if (filteredrevenues.length == 0) {
-    revMonthlyTable.innerHTML = `<tr><td colspan="5" class="text-start text-center" style="color:red">No Revenues Found</td></tr>`;
+    revMonthlyTable.innerHTML = `<tr><td colspan="5" class="text-warning text-start text-center" style="color:red">No Revenues Found</td></tr>`;
   } else {
     filteredrevenues = sortByDate(filteredrevenues);
     filteredrevenues.forEach((elm) => {
       revMonthlyTable.innerHTML += `<tr>
-      <td class="text-start">${elm.title}</td><td class="text-center">${elm.date[8]}${elm.date[9]}</td><td class="text-center">${elm.price} $</td>
-      <td class="text-center admin-toggle">
-      <button class="btn btn-sm btn-outline-info " data-bs-toggle="modal" data-bs-target="#edit-revenue-modal" onclick="showRevenue('${elm._id}')">
-        <i class="fas fa-edit"></i>
+      <td class="text-warning text-start">${elm.title}</td><td class="text-warning text-center">${elm.date[8]}${elm.date[9]}</td><td class="text-warning text-center">${elm.price} $</td>
+      <td class=" text-center admin-toggle">
+      <button class=" btn btn-sm btn-outline-info " data-bs-toggle="modal" data-bs-target="#edit-revenue-modal" onclick="showRevenue('${elm._id}')">
+        <i class=" fas fa-edit"></i>
       </button>
     </td>
-    <td class="text-center admin-toggle">
-      <button class="btn btn-sm btn-outline-danger" onclick="deleteRevenue('${elm._id}')">
-        <i class="fas fa-trash"></i>
+    <td class=" text-center admin-toggle">
+      <button class=" btn btn-sm btn-outline-danger" onclick="deleteRevenue('${elm._id}')">
+        <i class=" fas fa-trash"></i>
       </button>
     </td>
     </tr>`;
@@ -1559,9 +1559,9 @@ function changeDisplay(target) {
 function showElements() {
   const navUL = document.getElementById("header-content");
   navUL.innerHTML = `
-          <a class="navbar-brand">Night In Paradise</a>
+          <a class="text-warning navbar-brand">Night In Paradise</a>
           <button
-            class="navbar-toggler d-lg-none"
+            class="text-warning navbar-toggler d-lg-none"
             id="header-btn"
             type="button"
             data-bs-toggle="collapse"
@@ -1569,22 +1569,22 @@ function showElements() {
             aria-controls="collapsibleNavId"
             aria-expanded="false"
             aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
+            <span class="text-warning navbar-toggler-icon"></span>
           </button>
-          <div class="collapse navbar-collapse" id="collapsibleNavId">
-            <ul class="navbar-nav me-auto mt-2 mt-lg-0">
-             <li class="nav-item">
+          <div class="text-warning collapse navbar-collapse" id="collapsibleNavId">
+            <ul class="text-warning navbar-nav me-auto mt-2 mt-lg-0">
+             <li class="text-warning nav-item">
               <a
-                class="nav-link "
+                class="text-warning nav-link "
                 aria-current="page"
                 onclick="changeDisplay('reservations-section'),closeHeader()"
                 >Home </a>
               </li>
-              <li class="nav-item admin-toggle" >
-                <a class="nav-link" onclick="changeDisplay('all-users-section'),showAllUsers(),closeHeader()">Users</a>
+              <li class="text-warning nav-item admin-toggle" >
+                <a class="text-warning nav-link" onclick="changeDisplay('all-users-section'),showAllUsers(),closeHeader()">Users</a>
               </li>
-              <li class="nav-item" >
-                <a class="nav-link" onclick="changeDisplay('finance-section'),showAllExpences(),closeHeader()">Finance</a>
+              <li class="text-warning nav-item" >
+                <a class="text-warning nav-link" onclick="changeDisplay('finance-section'),showAllExpences(),closeHeader()">Finance</a>
               </li>
             </ul>
           </div>`;
