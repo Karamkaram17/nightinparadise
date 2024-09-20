@@ -1,0 +1,1 @@
+function o(e,r=0){if(e!=null){let t=e.toFixed(r).split(".");return t[0]=t[0].replace(/\B(?=(\d{3})+(?!\d))/g,","),t.join(".")}else return""}function f(e){if(typeof e=="number")return e;if(typeof e=="string"){let r=Number(e);return isNaN(r)?null:r}else return null}export{o as a,f as b};

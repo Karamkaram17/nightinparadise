@@ -1,0 +1,1 @@
+import{Kc as c,da as n,qb as s}from"./chunk-YNBU5IFA.js";var p=(()=>{let t=class t{constructor(){this.isLoading=c(()=>!!this._count()),this._count=s(0)}plus(){this._count.update(o=>o+1)}minus(){this._count.update(o=>o-1)}};t.\u0275fac=function(r){return new(r||t)},t.\u0275prov=n({token:t,factory:t.\u0275fac,providedIn:"root"});let i=t;return i})();export{p as a};

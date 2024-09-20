@@ -1,0 +1,1 @@
+var f=class{static UpdateArrayBehaviorSubject(l,d,s){let e=l.value.slice();if(s==="add")e.push(d);else if(s==="edit"){let i=e.findIndex(n=>n._id===d._id);i!==-1&&(e[i]=d)}else if(s==="delete"){let i=e.findIndex(n=>n._id===d._id);i!==-1&&e.splice(i,1)}l.next(e)}};export{f as a};
