@@ -1,0 +1,1 @@
+import{Jc as c,ca as n,pb as s}from"./chunk-X2WLLBA3.js";var p=(()=>{let t=class t{constructor(){this.isLoading=c(()=>!!this._count()),this._count=s(0)}plus(){this._count.update(o=>o+1)}minus(){this._count.update(o=>o-1)}};t.\u0275fac=function(r){return new(r||t)},t.\u0275prov=n({token:t,factory:t.\u0275fac,providedIn:"root"});let i=t;return i})();export{p as a};

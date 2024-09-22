@@ -1,0 +1,1 @@
+import{a as e}from"./chunk-IXDNPNBC.js";import{b as s}from"./chunk-ZHARXMO6.js";function f(i){let r=s(e.SS.user);if(r){if(r.admin)return!0;if(r.permissions){if(typeof i=="string")return r.permissions[i];if(Array.isArray(i))return i.some(n=>r.permissions[n])}}return!1}export{f as a};
