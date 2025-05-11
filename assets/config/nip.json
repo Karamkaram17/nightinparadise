@@ -1,14 +1,5 @@
 {
-	"version": "3.0.0",
-	"snackbarDuration": 5000,
-	"appOwner": "KS Solutions",
 	"appName": "Night In Paradise",
-	"ownerEmail": "ks_solutions_lb@hotmail.com",
-	"appOwnerLink": "https://ks-solutions-lb.com/",
 	"mainPageTitle": "Managed by JM Real Estate",
-	"mainPageLogoUrl": "./assets/night-in-paradise.png",
-	"maxTableHeightWithSearch": "calc(100dvh - 310px)",
-	"actionColumnWidthFor1": "70px",
-	"actionColumnWidthFor2": "110px",
-	"actionColumnWidthFor3": "170px"
+	"mainPageLogoUrl": "./assets/night-in-paradise.png"
 }
