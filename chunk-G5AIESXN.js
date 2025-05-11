@@ -1,1 +1,0 @@
-var a={version:"3.0.0",appName:"Night In Paradise",appOwner:"KS Solutions",ownerEmail:"ks_solutions_lb@hotmail.com",appOwnerLink:"https://ks-solutions-lb.com/",maxNumberValue:1e10,snackbarDuration:5e3,maxTableHeightWithSearch:"calc(100dvh - 115px - 50px - 50px - 90px)"};export{a};
