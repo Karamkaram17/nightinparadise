@@ -1,1 +1,0 @@
-var s={appName:"BMS",mainPageTitle:"Managed by KS Solutions",appLogoUrl:"./assets/karam/ks-solutions.png",mainPageLogoUrl:"./assets/karam/ks-solutions.png",API_HOST:"https://main-server-u49f.onrender.com/api/v1/bms/karam/",foldersToKeep:["assets/images","assets/karam"]};export{s as a};
